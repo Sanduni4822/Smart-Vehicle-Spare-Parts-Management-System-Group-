@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser, FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP, FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaShoppingCart,
+  FaUser,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaBars,
+  FaTimes
+} from 'react-icons/fa';
 import Garage from '../../assets/Garage.png';
 
 const NavBar = () => {
@@ -7,7 +19,6 @@ const NavBar = () => {
 
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
-      
       {/* Top Bar */}
       <div className="bg-gray-100 text-sm flex justify-between items-center px-4 py-2">
         <div className="flex items-center gap-6">
@@ -34,19 +45,18 @@ const NavBar = () => {
 
       {/* Main Nav */}
       <div className="bg-white px-4 py-3 flex justify-between items-center">
-        
         {/* Logo */}
         <div className="flex items-center">
-          <img 
-            src={Garage} 
-            alt="Logo" 
+          <img
+            src={Garage}
+            alt="Logo"
             className="h-6 md:h-8 w-auto object-contain"
           />
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <a href="#">Home</a>
+          <Link to="/">Home</Link>
           <a href="#">Spare Parts</a>
           <a href="#">Find Garages</a>
           <a href="#">Emergency</a>
@@ -60,8 +70,7 @@ const NavBar = () => {
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
           </div>
-
-          {/* Hamburger icon for mobile */}
+          {/* Hamburger */}
           <button className="md:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -71,7 +80,7 @@ const NavBar = () => {
       {/* Mobile Nav */}
       {menuOpen && (
         <nav className="flex flex-col items-center md:hidden bg-white gap-4 py-4 shadow-md text-gray-700 font-medium">
-          <a href="#">Home</a>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <a href="#">Spare Parts</a>
           <a href="#">Find Garages</a>
           <a href="#">Emergency</a>
