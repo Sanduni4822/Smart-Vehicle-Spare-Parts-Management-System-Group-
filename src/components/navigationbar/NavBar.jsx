@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser, FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP, FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../../assets/Logo.png';
+import Garage from '../../assets/Garage.png';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,9 +38,9 @@ const NavBar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <img 
-            src={Logo} 
+            src={Garage} 
             alt="Logo" 
-            className="h-10 md:h-16 w-auto object-contain"
+            className="h-6 md:h-8 w-auto object-contain"
           />
         </div>
 
