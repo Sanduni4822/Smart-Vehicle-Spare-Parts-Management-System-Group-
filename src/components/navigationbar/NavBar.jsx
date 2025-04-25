@@ -1,18 +1,30 @@
 import React from 'react';
-import { FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser, FaFacebookF, FaTwitter, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
 
 const NavBar = () => {
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
       {/* Top Bar */}
       <div className="bg-gray-100 text-sm flex justify-between items-center px-4 py-2">
-        <div className="flex items-center gap-4">
-          <FaEnvelope className="text-blue-600" />
-          <span>vehiclespare@gmail.com</span>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <FaEnvelope className="text-blue-600" />
+            <span>vehiclespare@gmail.com</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaPhoneAlt className="text-blue-600" />
+            <span>0479892752</span>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <FaPhoneAlt className="text-blue-600" />
-          <span>0479892752</span>
+        <div className="flex items-center gap-4 text-gray-700">
+          <a href="#"><FaFacebookF /></a>
+          <a href="#"><FaTwitter /></a>
+          <a href="#"><FaLinkedinIn /></a>
+          <a href="#"><FaPinterestP /></a>
+          <div className="flex items-center gap-1">
+            <FaUser />
+            <a href="#">Login</a>
+          </div>
         </div>
       </div>
 
@@ -40,7 +52,7 @@ const NavBar = () => {
             <FaShoppingCart />
             <span>₹ 0.00</span>
           </div>
-          <div className="flex items-center gap-1 text-gray-700">
+          <div className="flex items-center gap-1 text-gray-700 md:hidden">
             <FaUser />
             <a href="#">Login</a>
           </div>
