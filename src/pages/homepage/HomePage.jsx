@@ -1,6 +1,7 @@
 import React from 'react';
 import FlashDeals from '../../components/homepage/FlashDeals';
-import NewParts from '../../components/homepage/NewParts'; // ✅ Import your NewParts component
+import NewParts from '../../components/homepage/NewParts'; 
+import CustomerReviews from '../../components/homepage/CustomerReviews'; // Import CustomerReviews component
 
 function HomePage() {
   return (
@@ -33,7 +34,10 @@ function HomePage() {
       <FlashDeals />
 
       {/* New Our Parts Section */}
-      <NewParts />  {/* ✅ Now it appears below FlashDeals */}
+      <NewParts />
+
+      {/* Customer Reviews Section */}
+      <CustomerReviews /> {/* Now reviews will display below NewParts */}
 
     </div>
   );
