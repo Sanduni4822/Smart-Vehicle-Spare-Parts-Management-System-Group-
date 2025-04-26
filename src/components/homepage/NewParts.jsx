@@ -55,7 +55,7 @@ const products = [
 
 const NewParts = () => {
   return (
-    <div className="py-20 bg-[#f9f9f9]">
+    <div className="py-10 bg-[#f9f9f9]">
       <h2 className="text-3xl font-bold text-center text-orange-600 mb-12 uppercase">
         New Our Parts
       </h2>

@@ -25,7 +25,7 @@ const articles = [
 
 const RecentArticles = () => {
   return (
-    <div className="py-16 bg-white">
+    <div className="py-10 bg-[#f9f9f9]">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
         Recent Articles and News
       </h2>
@@ -39,7 +39,7 @@ const RecentArticles = () => {
               className="w-full h-48 object-cover"
             />
 
-            <div className="p-6 flex flex-col justify-between h-[220px]">
+            <div className="p-6 flex flex-col justify-between h-[150px]">
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
                   {article.title}

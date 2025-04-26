@@ -33,7 +33,7 @@ function HomePage() {
       <FlashDeals />
       <NewParts />
       <CustomerReviews />
-      <Article /> {/* ✅ Step 2: Use it below reviews or wherever you want */}
+      <Article /> {/* Step 2: Use it below reviews or wherever you want */}
 
     </div>
   );

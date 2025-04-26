@@ -37,7 +37,7 @@ const CustomerReviews = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <div className="py-16 bg-white">
+    <div className="py-10 bg-white">
       <h2 className="text-3xl font-bold text-center text-orange-600 mb-10 uppercase">
         What our Customer say
       </h2>
