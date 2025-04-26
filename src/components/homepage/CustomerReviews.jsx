@@ -8,26 +8,26 @@ import Customer4 from '../../assets/homepagecustomerreviews/Customer4.png';
 
 const reviews = [
   {
-    text: "UDFVDFHBV DV DJNKJDSFHDUNFVK",
-    name: "MD",
+    text: "The replacement side mirror I bought was a perfect match for my car. Customer service was also very responsive and helpful",
+    name: "Michael Lewis",
     rating: 4,
     image: Customer1,
   },
   {
-    text: "A critical article or report, as in a periodical, on a book, play, recital, or the like; critique; evaluation.",
-    name: "MD Mosheur Rahman",
+    text: "Smart Vehicle Spare Parts is my go-to site now. Authentic parts, quick delivery, and the best after-sales support.",
+    name: "Mosheur Rahman",
     rating: 4,
     image: Customer2,
   },
   {
     text: "Providing a great customer experience is very important to us, and we thank you for working with us to resolve the problems you experienced.",
-    name: "Mosheur Rahman",
+    name: "Olivia Smith",
     rating: 5,
     image: Customer3,
   },
   {
     text: "I needed a part for my car and got online to search for it. I came across CarParts.com. They seemed to have the part I needed.",
-    name: "Shakil Choudhory",
+    name: "Emma Wilson",
     rating: 4,
     image: Customer4,
   },
