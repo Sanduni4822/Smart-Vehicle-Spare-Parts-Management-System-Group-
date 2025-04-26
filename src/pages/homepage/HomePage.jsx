@@ -1,7 +1,8 @@
 import React from 'react';
 import FlashDeals from '../../components/homepage/FlashDeals';
 import NewParts from '../../components/homepage/NewParts'; 
-import CustomerReviews from '../../components/homepage/CustomerReviews'; // Import CustomerReviews component
+import CustomerReviews from '../../components/homepage/CustomerReviews';
+import Article from '../../components/homepage/Article'; // ✅ Step 1: Import
 
 function HomePage() {
   return (
@@ -17,9 +18,7 @@ function HomePage() {
           loop
           playsInline
         ></video>
-
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
-
         <div className="relative z-20 flex flex-col justify-center items-center h-full px-4 text-center">
           <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
             Welcome to Smart Vehicle Spare Parts
@@ -30,14 +29,11 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Flash Deals Section */}
+      {/* Sections */}
       <FlashDeals />
-
-      {/* New Our Parts Section */}
       <NewParts />
-
-      {/* Customer Reviews Section */}
-      <CustomerReviews /> {/* Now reviews will display below NewParts */}
+      <CustomerReviews />
+      <Article /> {/* ✅ Step 2: Use it below reviews or wherever you want */}
 
     </div>
   );
