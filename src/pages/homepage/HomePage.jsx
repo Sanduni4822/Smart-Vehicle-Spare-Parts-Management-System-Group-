@@ -2,7 +2,8 @@ import React from 'react';
 import FlashDeals from '../../components/homepage/FlashDeals';
 import NewParts from '../../components/homepage/NewParts'; 
 import CustomerReviews from '../../components/homepage/CustomerReviews';
-import Article from '../../components/homepage/Article'; // ✅ Step 1: Import
+import Article from '../../components/homepage/Article'; 
+import BestSellers from '../../components/homepage/BestSellers';
 
 function HomePage() {
   return (
@@ -33,7 +34,8 @@ function HomePage() {
       <FlashDeals />
       <NewParts />
       <CustomerReviews />
-      <Article /> {/* Step 2: Use it below reviews or wherever you want */}
+      <Article /> 
+      <BestSellers />
 
     </div>
   );
