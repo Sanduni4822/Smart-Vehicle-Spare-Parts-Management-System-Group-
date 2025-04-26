@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //  Import customer images
 import Customer1 from '../../assets/homepagecustomerreviews/Customer1.png';
 import Customer2 from '../../assets/homepagecustomerreviews/Customer2.png';
 import Customer3 from '../../assets/homepagecustomerreviews/Customer3.png';
 import Customer4 from '../../assets/homepagecustomerreviews/Customer4.png';
-
 
 const reviews = [
   {
@@ -32,11 +31,11 @@ const reviews = [
     rating: 4,
     image: Customer4,
   },
-  
-  
 ];
 
 const CustomerReviews = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
   return (
     <div className="py-16 bg-white">
       <h2 className="text-3xl font-bold text-center text-orange-600 mb-10 uppercase">
@@ -46,14 +45,21 @@ const CustomerReviews = () => {
         {reviews.map((review, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow hover:shadow-md transition duration-300 p-6 flex flex-col justify-between border border-gray-200"
+            onClick={() => setActiveIndex(index)}
+            className={`cursor-pointer bg-white rounded-2xl shadow transition duration-300 p-6 flex flex-col justify-between border ${
+              activeIndex === index
+                ? 'border-orange-500 scale-105 shadow-lg'
+                : 'border-gray-200 hover:shadow-md'
+            }`}
           >
             <p className="text-gray-700 text-sm mb-6">{review.text}</p>
             <div className="flex items-center gap-4 mt-auto">
               <img
                 src={review.image}
                 alt={review.name}
-                className="w-12 h-12 rounded-full border-2 border-orange-500"
+                className={`${
+                  activeIndex === index ? 'w-16 h-16' : 'w-12 h-12'
+                } rounded-full border-2 border-orange-500 transition-all duration-300`}
               />
               <div className="text-left">
                 <h4 className="text-md font-bold">{review.name}</h4>
@@ -63,7 +69,9 @@ const CustomerReviews = () => {
                       key={starIndex}
                       xmlns="http://www.w3.org/2000/svg"
                       className={`h-4 w-4 ${
-                        starIndex < review.rating ? 'text-orange-500' : 'text-gray-300'
+                        starIndex < review.rating
+                          ? 'text-orange-500'
+                          : 'text-gray-300'
                       }`}
                       viewBox="0 0 20 20"
                       fill="currentColor"
