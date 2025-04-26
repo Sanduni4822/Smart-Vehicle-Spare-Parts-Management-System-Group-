@@ -1,11 +1,12 @@
 import React from 'react';
 import FlashDeals from '../../components/homepage/FlashDeals';
+import NewParts from '../../components/homepage/NewParts'; // ✅ Import your NewParts component
 
 function HomePage() {
   return (
     <div className="w-full">
 
-      {/* 🎥 Video Banner Section */}
+      {/* Video Banner Section */}
       <div className="relative h-[400px] w-full overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -28,8 +29,12 @@ function HomePage() {
         </div>
       </div>
 
-      {/* 🔻 Flash Deals Section */}
+      {/* Flash Deals Section */}
       <FlashDeals />
+
+      {/* New Our Parts Section */}
+      <NewParts />  {/* ✅ Now it appears below FlashDeals */}
+
     </div>
   );
 }
