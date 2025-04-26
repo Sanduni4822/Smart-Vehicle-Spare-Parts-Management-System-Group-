@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navigationbar/NavBar';
 import HomePage from './pages/homepage/HomePage';
-// import other pages if needed
+import LoginPage from './pages/Login/LoginPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* Add other routes like <Route path="/about" element={<AboutPage />} /> */}
+        <Route path="/login" element={<LoginPage />}/>
       </Routes>
     </Router>
   );

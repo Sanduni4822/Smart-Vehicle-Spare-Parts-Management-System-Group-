@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -38,7 +39,7 @@ const NavBar = () => {
           <a href="#"><FaPinterestP /></a>
           <div className="flex items-center gap-1">
             <FaUser />
-            <a href="#">Login</a>
+            <Link to="/login">Login</Link>
           </div>
         </div>
       </div>
@@ -86,7 +87,11 @@ const NavBar = () => {
           <a href="#">Emergency</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
-          <a href="#"><FaUser className="inline mr-1" /> Login</a>
+          {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}
+          <Link to="/login" onClick={() => setMenuOpen(false)}>
+             <FaUser className="inline mr-1" /> Login
+          </Link>
+
         </nav>
       )}
     </header>
