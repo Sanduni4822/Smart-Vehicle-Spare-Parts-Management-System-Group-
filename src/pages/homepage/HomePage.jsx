@@ -6,6 +6,7 @@ import Article from '../../components/homepage/Article';
 import BestSellers from '../../components/homepage/BestSellers';
 import MembershipDiscount from '../../components/homepage/MembershipDiscount';
 import WhyChooseUs from '../../components/homepage/WhyChooseUs';
+import ContactUs from '../../components/homepage/ContactUs';
 
 function HomePage() {
   return (
@@ -40,6 +41,7 @@ function HomePage() {
       <BestSellers />
       <MembershipDiscount />
       <WhyChooseUs />
+      <ContactUs />
 
     </div>
   );
