@@ -10,7 +10,7 @@ import {
   FaLinkedinIn,
   FaPinterestP,
   FaBars,
-  FaTimes
+  FaTimes,
 } from 'react-icons/fa';
 import Garage from '../../assets/Garage.png';
 
@@ -20,7 +20,8 @@ const NavBar = () => {
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
       {/* Top Bar */}
-      <div className="bg-gray-100 text-sm flex justify-between items-center px-4 py-2">
+      <div className="bg-gray-100 text-sm flex justify-between items-center px-6 py-3">
+        {/* ⬆️ Increased px-6 py-3 (padding left/right and top/bottom) */}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <FaEnvelope className="text-blue-600" />
@@ -44,24 +45,24 @@ const NavBar = () => {
       </div>
 
       {/* Main Nav */}
-      <div className="bg-white px-4 py-3 flex justify-between items-center">
+      <div className="bg-white px-2 py-1 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
           <img
             src={Garage}
             alt="Logo"
-            className="h-6 md:h-8 w-auto object-contain"
+            className="h-20 md:h-24 w-auto object-contain"
           />
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <Link to="/">Home</Link>
-          <a href="#">Spare Parts</a>
-          <a href="#">Find Garages</a>
-          <a href="#">Emergency</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+        <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
+          <Link to="/" className="hover:text-blue-600">Home</Link>
+          <a href="#" className="hover:text-blue-600">Spare Parts</a>
+          <a href="#" className="hover:text-blue-600">Find Garages</a>
+          <a href="#" className="hover:text-blue-600">Emergency</a>
+          <a href="#" className="hover:text-blue-600">About</a>
+          <a href="#" className="hover:text-blue-600">Contact</a>
         </nav>
 
         {/* Icons */}
@@ -70,7 +71,7 @@ const NavBar = () => {
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
           </div>
-          {/* Hamburger */}
+          {/* Hamburger Menu Button */}
           <button className="md:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
