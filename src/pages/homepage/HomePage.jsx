@@ -4,6 +4,7 @@ import NewParts from '../../components/homepage/NewParts';
 import CustomerReviews from '../../components/homepage/CustomerReviews';
 import Article from '../../components/homepage/Article'; 
 import BestSellers from '../../components/homepage/BestSellers';
+import MembershipDiscount from '../../components/homepage/MembershipDiscount';
 
 function HomePage() {
   return (
@@ -36,6 +37,7 @@ function HomePage() {
       <CustomerReviews />
       <Article /> 
       <BestSellers />
+      <MembershipDiscount />
 
     </div>
   );
