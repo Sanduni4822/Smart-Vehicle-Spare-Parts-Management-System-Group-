@@ -60,7 +60,8 @@ const NavBar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-sm">
           <Link to="/" className="hover:text-blue-600">Home</Link>
-          <a href="#" className="hover:text-blue-600">Spare Parts</a>
+          {/* <a href="#" className="hover:text-blue-600">Spare Parts</a> */}
+          <Link to="/spareparts" className="hover:text-blue-600">Spare Parts</Link>
           <a href="#" className="hover:text-blue-600">Find Garages</a>
           <a href="#" className="hover:text-blue-600">Emergency</a>
           <a href="#" className="hover:text-blue-600">About</a>
@@ -84,7 +85,10 @@ const NavBar = () => {
       {menuOpen && (
         <nav className="flex flex-col items-center md:hidden bg-white gap-4 py-4 shadow-md text-gray-700 font-medium">
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <a href="#">Spare Parts</a>
+          <Link to="/spareparts" onClick={() => setMenuOpen(false)}>
+             <FaUser className="inline mr-1" /> Spare Parts
+          </Link>
+          {/* <a href="#">Spare Parts</a> */}
           <a href="#">Find Garages</a>
           <a href="#">Emergency</a>
           <a href="#">About</a>
