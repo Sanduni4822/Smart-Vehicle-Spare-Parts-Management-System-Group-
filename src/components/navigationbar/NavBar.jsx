@@ -20,8 +20,8 @@ const NavBar = () => {
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
       {/* Top Bar */}
-      <div className="bg-gray-100 text-sm flex justify-between items-center px-6 py-3">
-        {/* ⬆️ Increased px-6 py-3 (padding left/right and top/bottom) */}
+      <div className="bg-gray-100 text-sm flex justify-between items-center px-4 py-2">
+        {/* Slightly reduced padding for top bar */}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <FaEnvelope className="text-blue-600" />
@@ -45,18 +45,19 @@ const NavBar = () => {
       </div>
 
       {/* Main Nav */}
-      <div className="bg-white px-2 py-1 flex justify-between items-center">
+      <div className="bg-white px-1 py-0 flex justify-between items-center min-h-[50px]">
+        {/* Much tighter padding for second nav bar */}
         {/* Logo */}
         <div className="flex items-center">
           <img
             src={Garage}
             alt="Logo"
-            className="h-20 md:h-24 w-auto object-contain"
+            className="h-12 md:h-16 w-auto object-contain"
           />
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
+        <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-sm">
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <a href="#" className="hover:text-blue-600">Spare Parts</a>
           <a href="#" className="hover:text-blue-600">Find Garages</a>
@@ -66,7 +67,7 @@ const NavBar = () => {
         </nav>
 
         {/* Icons */}
-        <div className="flex items-center gap-4 text-gray-700">
+        <div className="flex items-center gap-3 text-gray-700 text-sm">
           <div className="flex items-center gap-1">
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
