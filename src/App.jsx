@@ -4,6 +4,7 @@ import NavBar from './components/navigationbar/NavBar';
 import HomePage from './pages/homepage/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import ResetPasswordPage from './pages/login/ResetPasswordPage';
+import SignUpPage from './pages/Signup/SignupPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/resetp" element={<ResetPasswordPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </Router>
   );
