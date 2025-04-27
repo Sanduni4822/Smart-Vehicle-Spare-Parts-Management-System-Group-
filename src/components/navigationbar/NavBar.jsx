@@ -57,8 +57,9 @@ const NavBar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
           <Link to="/">Home</Link>
+          <Link to="/garage">Find Garages</Link>
           <a href="#">Spare Parts</a>
-          <a href="#">Find Garages</a>
+          {/* <a href="#">Find Garages</a> */}
           <a href="#">Emergency</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
@@ -82,7 +83,8 @@ const NavBar = () => {
         <nav className="flex flex-col items-center md:hidden bg-white gap-4 py-4 shadow-md text-gray-700 font-medium">
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <a href="#">Spare Parts</a>
-          <a href="#">Find Garages</a>
+          <Link to="/garage" onClick={() => setMenuOpen(false)}>Find Garages</Link>
+          {/* <a href="#">Find Garages</a> */}
           <a href="#">Emergency</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
