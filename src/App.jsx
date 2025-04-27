@@ -9,10 +9,10 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        {/* 🔝 Top Navigation */}
+        {/*  Top Navigation */}
         <NavBar />
 
-        {/* 📄 Main Content Area */}
+        {/*  Main Content Area */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -21,7 +21,7 @@ function App() {
           </Routes>
         </main>
 
-        {/* 🔻 Footer Sticks to Bottom */}
+        {/*  Footer Sticks to Bottom */}
         <Footer />
       </div>
     </Router>
