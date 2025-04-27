@@ -3,7 +3,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const FilterSection = ({ title, icon, isExpanded, onToggle }) => {
   return (
-    <div className="border-b py-3">
+    <div className="border-b py-6">
       <div
         className="flex justify-between items-center cursor-pointer font-semibold text-black"
         onClick={onToggle}

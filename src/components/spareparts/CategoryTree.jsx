@@ -95,7 +95,7 @@ const CategoryTree = () => {
   };
 
   return (
-    <div className="w-full p-4 bg-white rounded-md shadow-md overflow-y-auto max-h-screen">
+    <div className="w-full p-8 bg-white rounded-md shadow-md overflow-y-auto max-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Categories</h2>
 
       <div className="flex flex-col gap-3">
