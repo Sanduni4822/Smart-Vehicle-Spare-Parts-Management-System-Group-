@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CategoryItem from './CategoryItem'; // import the child component
+import CategoryItem from './CategoryItem'; // Importing the child component
 
 const CategoryTree = () => {
   const [expanded, setExpanded] = useState({});
@@ -20,7 +20,22 @@ const CategoryTree = () => {
         { name: 'Drivetrain', count: 20990 },
       ],
     },
-    { name: 'Body Parts' },
+    {
+      name: 'Body Parts',
+      subcategories: [
+        { name: 'Front Bumpers', count: 15205 },
+        { name: 'Fenders', count: 8519 },
+        { name: 'Rear Bumpers', count: 7546 },
+        { name: 'Bumper Grilles', count: 5772 },
+        { name: 'Mirrors', count: 5340 },
+        { name: 'Car Doors', count: 5311 },
+        { name: 'Hoods', count: 2902 },
+        { name: 'Radiator Support', count: 2026 },
+        { name: 'Tailgates', count: 526 },
+        { name: 'Quarter Panels', count: 454 },
+        { name: 'Windshields', count: 409 },
+      ],
+    },
     { name: 'Automotive Lightings' },
     { name: 'Tools & Equipment' },
     { name: 'Performance Parts' },
