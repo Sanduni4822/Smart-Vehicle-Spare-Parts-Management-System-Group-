@@ -29,9 +29,26 @@ const FilterSidebar = () => {
       { name: 'Vehicle Specific', count: 46109 },
       { name: 'Universal Fitment', count: 1519 },
     ],
-    brand: [],
-    price: [],
-    availability: [],
+    brand: [
+      { name: 'BOSCH', count: 6373 },
+      { name: 'DENSO', count: 4714 },
+      { name: 'ACDelco', count: 1628 },
+      { name: 'KYB', count: 1497 },
+      { name: 'DORMAN', count: 1406 },
+      { name: 'OSC', count: 1151 },
+      { name: 'UAC', count: 994 },
+    ],
+    price: [
+      { name: '$0 - $50', count: 10543 },
+      { name: '$51 - $100', count: 8543 },
+      { name: '$101 - $200', count: 6043 },
+      { name: '$201 - $500', count: 2543 },
+      { name: '$500+', count: 843 },
+    ],
+    availability: [
+      { name: 'In Stock', count: 55000 },
+      { name: 'Out of Stock', count: 12000 },
+    ],
   };
 
   return (
