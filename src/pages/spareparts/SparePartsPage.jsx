@@ -1,12 +1,13 @@
 import React from 'react';
 import CategoryTree from '../../components/spareparts/CategoryTree';
 import FilterSidebar from '../../components/spareparts/FilterSidebar';
-import ProductGrid from '../../components/spareparts/ProductGrid'; 
-import PaymentAndDelivery from '../../components/spareparts/PaymentAndDelivery'; // Import PaymentAndDelivery component
+import ProductGrid from '../../components/spareparts/ProductGrid';
+import PaymentAndDelivery from '../../components/spareparts/PaymentAndDelivery';
+import FeedbackButton from '../../components/spareparts/FeedbackButton'; //  Import FeedbackButton
 
 const SparePartsPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
 
       {/* Main Content */}
       <div className="flex flex-col md:flex-row gap-6 px-8 pb-6">
@@ -18,7 +19,7 @@ const SparePartsPage = () => {
 
         {/* Middle Space: Product Grid */}
         <div className="flex-1">
-          <ProductGrid /> {/*  Call ProductGrid */}
+          <ProductGrid />
         </div>
 
         {/* Right Side: Filter Sidebar */}
@@ -28,8 +29,11 @@ const SparePartsPage = () => {
 
       </div>
 
-      {/*  Call PaymentAndDelivery at the bottom */}
-      <PaymentAndDelivery /> 
+      {/* Bottom Section: Payment & Delivery */}
+      <PaymentAndDelivery />
+
+      {/* Sticky Feedback Button */}
+      <FeedbackButton />
 
     </div>
   );
