@@ -1,7 +1,8 @@
 import React from 'react';
 import CategoryTree from '../../components/spareparts/CategoryTree';
 import FilterSidebar from '../../components/spareparts/FilterSidebar';
-import ProductGrid from '../../components/spareparts/ProductGrid'; //  Import your ProductGrid here
+import ProductGrid from '../../components/spareparts/ProductGrid'; 
+import PaymentAndDelivery from '../../components/spareparts/PaymentAndDelivery'; // Import PaymentAndDelivery component
 
 const SparePartsPage = () => {
   return (
@@ -17,7 +18,7 @@ const SparePartsPage = () => {
 
         {/* Middle Space: Product Grid */}
         <div className="flex-1">
-          <ProductGrid /> {/*  Call ProductGrid here */}
+          <ProductGrid /> {/*  Call ProductGrid */}
         </div>
 
         {/* Right Side: Filter Sidebar */}
@@ -26,6 +27,10 @@ const SparePartsPage = () => {
         </div>
 
       </div>
+
+      {/*  Call PaymentAndDelivery at the bottom */}
+      <PaymentAndDelivery /> 
+
     </div>
   );
 };
