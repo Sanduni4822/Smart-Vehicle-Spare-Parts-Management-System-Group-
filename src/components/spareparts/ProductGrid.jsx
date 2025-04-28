@@ -4,25 +4,35 @@ import { FaShoppingCart, FaHeart } from 'react-icons/fa'; // Import icons
 import Brakers from '../../assets/sparepartspage/Brakers.png';
 import Bumpergrills from '../../assets/sparepartspage/Bumpergrills.png';
 import Cardoors from '../../assets/sparepartspage/Cardoors.png';
+import Carsensor from '../../assets/sparepartspage/Carsensor.png';
+import Cooling from '../../assets/sparepartspage/Cooling.png';
+
 
 const products = [
   {
     id: 1,
-    name: 'Brake Pads Set',
-    price: 8166,
+    name: 'Brakers',
     image: Brakers,
   },
   {
     id: 2,
     name: 'Bumper Grills',
-    price: 2595,
     image: Bumpergrills,
   },
   {
     id: 3,
     name: 'Car Doors',
-    price: 504,
     image: Cardoors,
+  },
+  {
+    id: 4,
+    name: 'Car Sensor',
+    image: Carsensor,
+  },
+  {
+    id: 5,
+    name: 'Cooling Systems',
+    image: Cooling,
   },
 ];
 
@@ -50,7 +60,6 @@ const ProductGrid = () => {
 
             {/* Price and Buttons */}
             <div className="flex flex-col items-center gap-2">
-              <p className="text-blue-700 font-bold text-xl">₹{product.price}</p>
               <div className="flex gap-2 items-center">
                 {/* View Details Button */}
                 <button className="flex items-center justify-center px-4 py-2 border border-blue-400 text-blue-600 rounded-full hover:bg-blue-50">
