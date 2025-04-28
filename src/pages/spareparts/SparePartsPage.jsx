@@ -17,7 +17,7 @@ const SparePartsPage = () => {
 
         {/* Middle Space: Product Grid */}
         <div className="flex-1">
-          <ProductGrid /> {/* 👉 Call ProductGrid here */}
+          <ProductGrid /> {/*  Call ProductGrid here */}
         </div>
 
         {/* Right Side: Filter Sidebar */}
