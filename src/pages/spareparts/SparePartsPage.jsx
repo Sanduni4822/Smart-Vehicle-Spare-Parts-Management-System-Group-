@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoryTree from '../../components/spareparts/CategoryTree';
 import FilterSidebar from '../../components/spareparts/FilterSidebar';
-import ProductGrid from '../../components/spareparts/ProductGrid'; // 👉 Import your ProductGrid here
+import ProductGrid from '../../components/spareparts/ProductGrid'; //  Import your ProductGrid here
 
 const SparePartsPage = () => {
   return (

@@ -1,5 +1,6 @@
-import React from 'react';
-import { FaShoppingCart, FaHeart } from 'react-icons/fa'; // Import icons
+import React, { useState } from 'react';
+import { FaShoppingCart } from 'react-icons/fa'; // You also imported FaHeart, but not using it yet.
+import Pagination from './Pagination'; // ✅ Import your Pagination component
 
 import Brakers from '../../assets/sparepartspage/Brakers.png';
 import Bumpergrills from '../../assets/sparepartspage/Bumpergrills.png';
@@ -7,42 +8,33 @@ import Cardoors from '../../assets/sparepartspage/Cardoors.png';
 import Carsensor from '../../assets/sparepartspage/Carsensor.png';
 import Cooling from '../../assets/sparepartspage/Cooling.png';
 
-
 const products = [
-  {
-    id: 1,
-    name: 'Brakers',
-    image: Brakers,
-  },
-  {
-    id: 2,
-    name: 'Bumper Grills',
-    image: Bumpergrills,
-  },
-  {
-    id: 3,
-    name: 'Car Doors',
-    image: Cardoors,
-  },
-  {
-    id: 4,
-    name: 'Car Sensor',
-    image: Carsensor,
-  },
-  {
-    id: 5,
-    name: 'Cooling Systems',
-    image: Cooling,
-  },
+  { id: 1, name: 'Brakers', image: Brakers },
+  { id: 2, name: 'Bumper Grills', image: Bumpergrills },
+  { id: 3, name: 'Car Doors', image: Cardoors },
+  { id: 4, name: 'Car Sensor', image: Carsensor },
+  { id: 5, name: 'Cooling Systems', image: Cooling },
 ];
 
 const ProductGrid = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 3; // 👉 Show 3 products per page
+
+  // Calculate pages
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const currentProducts = products.slice(startIndex, startIndex + productsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="flex flex-col px-8">
 
       {/* Line-by-Line Products */}
       <div className="flex flex-col gap-6">
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div 
             key={product.id} 
             className="flex flex-col md:flex-row items-center justify-between border rounded-lg shadow p-4 hover:shadow-lg transition-shadow"
@@ -76,6 +68,14 @@ const ProductGrid = () => {
           </div>
         ))}
       </div>
+
+      {/* ✅ Pagination is here */}
+      <Pagination 
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+
     </div>
   );
 };
