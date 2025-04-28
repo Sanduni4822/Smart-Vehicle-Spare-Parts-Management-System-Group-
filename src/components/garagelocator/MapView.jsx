@@ -2,7 +2,7 @@ import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 const MapView = ({ centerLocation, garages, userLocation }) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCtDdC2YPjVEMbhdfFS5QOSiwtrBtuVRkQ",
+    googleMapsApiKey: "your_api",
   });
 
   if (!isLoaded) return <div>Loading Map...</div>;
