@@ -78,7 +78,7 @@ export default function EmergencyAssistance() {
             {policeStations.map((station) => (
               <li key={station.number}>
                 <Button
-                  className="w-full bg-red-500 hover:bg-red-600 text-white"
+                  className="w-full bg-red-300 hover:bg-red-600 text-white"
                   onClick={() => handleCall(station.number)}
                 >
                   {station.name} - {station.number}
