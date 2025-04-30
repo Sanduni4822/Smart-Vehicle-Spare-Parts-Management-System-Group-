@@ -81,7 +81,7 @@ const ProductGrid = () => {
                 <button
                   onClick={() => {
                     if (product.name.toLowerCase() === 'brakers') {
-                      navigate('/dkkk'); // ✅ Navigate to Brakers page
+                      navigate('/dkkk'); //  Navigate to Brakers page
                     }
                   }}
                   className="flex items-center justify-center px-4 py-2 border border-blue-400 text-blue-600 rounded-full hover:bg-blue-50"
