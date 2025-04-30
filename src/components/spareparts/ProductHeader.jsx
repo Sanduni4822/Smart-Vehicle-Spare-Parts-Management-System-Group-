@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaTh, FaBars } from 'react-icons/fa';
 
 const ProductHeader = ({ productCount = 21, view, setView }) => {

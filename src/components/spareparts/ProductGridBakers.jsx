@@ -67,7 +67,7 @@ const ProductGridBakers = ({ view }) => {
   const containerClass =
     view === 'grid'
       ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'
-      : 'grid grid-cols-1 gap-6'; // keep card structure in list
+      : 'flex flex-col gap-6'; // stacked list for list view
 
   return (
     <div className="px-4 py-6">
@@ -77,39 +77,63 @@ const ProductGridBakers = ({ view }) => {
             key={product.id}
             className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 group"
           >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-40 object-contain mb-3"
-            />
-            <h3 className="text-lg font-semibold text-gray-800 text-center">
-              {product.name}
-            </h3>
-            <p className="text-red-600 font-bold text-center mb-2">
-              Rs {product.price}.00
-            </p>
-
-            {/* Show extra info only in LIST view */}
-            {view === 'list' && (
-              <div className="text-sm text-gray-600 space-y-1 text-center mb-2">
-                <p><strong>Brand:</strong> {product.brand}</p>
-                <p><strong>Stock:</strong> <span className={product.stock === 'Sold out' ? 'text-red-500' : 'text-green-600'}>{product.stock}</span></p>
-                <p> {product.description}</p>
+            {view === 'list' ? (
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-32 h-32 object-contain"
+                />
+                <div className="flex-1 space-y-1">
+                  <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
+                  <p><strong>Brand:</strong> {product.brand}</p>
+                  <p>
+                    <strong>Stock:</strong>{" "}
+                    <span className={product.stock === 'Sold out' ? 'text-red-500' : 'text-green-600'}>
+                      {product.stock}
+                    </span>
+                  </p>
+                  <p>{product.description}</p>
+                  <p className="text-red-600 font-bold text-lg">Rs {product.price}.00</p>
+                  <button
+                    disabled={product.stock === 'Sold out'}
+                    className={`px-6 py-2 rounded-full mt-2 transition-opacity duration-300 ${
+                      product.stock === 'Sold out'
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-red-600 text-white hover:bg-red-700'
+                    }`}
+                  >
+                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to Cart'}
+                  </button>
+                </div>
               </div>
+            ) : (
+              <>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-40 object-contain mb-3"
+                />
+                <h3 className="text-lg font-semibold text-gray-800 text-center">
+                  {product.name}
+                </h3>
+                <p className="text-red-600 font-bold text-center mb-2">
+                  Rs {product.price}.00
+                </p>
+                <div className="flex justify-center">
+                  <button
+                    disabled={product.stock === 'Sold out'}
+                    className={`px-6 py-2 rounded-full transition-opacity duration-300 ${
+                      product.stock === 'Sold out'
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-red-600 text-white hover:bg-red-700 opacity-0 group-hover:opacity-100'
+                    }`}
+                  >
+                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to Cart'}
+                  </button>
+                </div>
+              </>
             )}
-
-            <div className="flex justify-center">
-              <button
-                disabled={product.stock === 'Sold out'}
-                className={`px-6 py-2 rounded-full transition-opacity duration-300 ${
-                  product.stock === 'Sold out'
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-red-600 text-white hover:bg-red-700 opacity-0 group-hover:opacity-100'
-                }`}
-              >
-                {product.stock === 'Sold out' ? 'Unavailable' : 'Add to Cart'}
-              </button>
-            </div>
           </div>
         ))}
       </div>
