@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FeedbackPopup = () => {
+const FeedbackPopup = ({ onClose }) => {
   const [rating, setRating] = useState('');
   const [recommend, setRecommend] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -8,9 +8,9 @@ const FeedbackPopup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can send this data to your server or Google Forms here
     console.log({ rating, feedback, recommend, email });
     alert('Thank you for your feedback!');
+    onClose(); // Close after submit
   };
 
   const emojis = [
@@ -23,7 +23,16 @@ const FeedbackPopup = () => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
-      <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-xl">
+      <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-xl relative">
+        
+        {/* ❌ Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-black text-2xl"
+        >
+          &times;
+        </button>
+
         <h2 className="text-2xl font-bold mb-6">Send Feedback</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -57,9 +66,9 @@ const FeedbackPopup = () => {
             />
           </div>
 
-          {/* Likert Scale (1-10) */}
+          {/* Likert Scale */}
           <div className="text-center">
-            <p className="font-semibold mb-2">How likely are you to recommend us to your friends and colleagues? </p>
+            <p className="font-semibold mb-2">How likely are you to recommend us to your friends and colleagues?</p>
             <div className="flex justify-center gap-2 flex-wrap">
               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                 <button
@@ -99,7 +108,6 @@ const FeedbackPopup = () => {
           >
             Submit Feedback
           </button>
-
         </form>
       </div>
     </div>

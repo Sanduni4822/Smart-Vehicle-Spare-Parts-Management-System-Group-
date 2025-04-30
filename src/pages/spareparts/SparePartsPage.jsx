@@ -4,10 +4,10 @@ import FilterSidebar from '../../components/spareparts/FilterSidebar';
 import ProductGrid from '../../components/spareparts/ProductGrid';
 import PaymentAndDelivery from '../../components/spareparts/PaymentAndDelivery';
 import FeedbackButton from '../../components/spareparts/FeedbackButton';
-import FeedbackPopup from '../../components/spareparts/FeedbackPopup'; // ✅ Import FeedbackPopup
+import FeedbackPopup from '../../components/spareparts/FeedbackPopup';
 
 const SparePartsPage = () => {
-  const [showFeedbackPopup, setShowFeedbackPopup] = useState(false); // ✅ Create popup state
+  const [showFeedbackPopup, setShowFeedbackPopup] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -28,14 +28,13 @@ const SparePartsPage = () => {
       {/* Bottom Section */}
       <PaymentAndDelivery />
 
-      {/* Sticky Feedback Button */}
-      <FeedbackButton onClick={() => setShowFeedbackPopup(true)} /> {/* ✅ Pass open function */}
+      {/* Feedback Button */}
+      <FeedbackButton onClick={() => setShowFeedbackPopup(true)} />
 
       {/* Feedback Popup */}
       {showFeedbackPopup && (
-        <FeedbackPopup /> 
+        <FeedbackPopup onClose={() => setShowFeedbackPopup(false)} />
       )}
-
     </div>
   );
 };
