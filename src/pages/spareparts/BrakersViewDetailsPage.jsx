@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductHeader from '../../components/spareparts/ProductHeader';
-import ProductGridBakers, { currentProducts } from '../../components/spareparts/ProductGridBakers';
+import ProductGridBakers, { currentProducts } from "../../components/spareparts/ProductGridBakers";
 
 const BrakersViewDetailsPage = () => {
+  const [view, setView] = useState('grid');
+
   return (
     <div className="p-4">
-      {/* Header Section with dynamic product count */}
-      <ProductHeader productCount={currentProducts.length} />
-      
-      {/* Product Grid Section */}
-      <ProductGridBakers />
+      <ProductHeader productCount={currentProducts.length} view={view} setView={setView} />
+      <ProductGridBakers view={view} />
     </div>
   );
 };
