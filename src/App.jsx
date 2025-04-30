@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navigationbar/NavBar';
-
 import HomePage from './pages/homepage/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import ResetPasswordPage from './pages/login/ResetPasswordPage';
@@ -12,6 +11,9 @@ import ReportIncidentPage from './pages/emergency/ReportIncidentPage';
 import AboutUs from './pages/aboutus/AboutUs';
 import Footer from './components/footer/Footer';
 import FindGaragesPage from './pages/Garage/FindGaragesPage';
+import BrakersViewDetailsPage from './pages/spareparts/BrakersViewDetailsPage';
+import AddToCartPage from './pages/spareparts/AddToCartPage';
+import SparePartsPage from './pages/spareparts/SparePartsPage';
 
 
 
@@ -34,6 +36,9 @@ function App() {
             <Route path="/past_reports" element={<PastReportsPage/>} />
             <Route path="/aboutus" element={<AboutUs/>}/>
             <Route path="/garage" element={<FindGaragesPage/>}/>
+            <Route path="/spareparts" element={<SparePartsPage />} />
+            <Route path="/dkkk" element={<BrakersViewDetailsPage/>} />
+            <Route path="/add-to-cart" element={<AddToCartPage />} />
           </Routes>
         </main>
 

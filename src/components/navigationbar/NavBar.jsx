@@ -75,6 +75,7 @@ const NavBar = () => {
           {/* <a href="#" className="hover:text-blue-600">Find Garages</a> */}
           {/* <a href="#" className="hover:text-blue-600">Emergency</a> */}
           {/* <a href="#" className="hover:text-blue-600">About</a> */}
+          <Link to="/spareparts" className="hover:text-blue-600">Spare Parts</Link>
           <Link to="/aboutus" className="hover:text-blue-600">About</Link>
           <a href="#" className="hover:text-blue-600">Contact</a>
 
@@ -105,6 +106,9 @@ const NavBar = () => {
           <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
           <a href="#">Contact</a>
           {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}
+          <Link to="/spareparts" onClick={() => setMenuOpen(false)}>
+             <FaUser className="inline mr-1" /> Spare Parts
+          </Link>
           <Link to="/login" onClick={() => setMenuOpen(false)}>
             <FaUser className="inline mr-1" /> Login
           </Link>
