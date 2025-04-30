@@ -18,7 +18,7 @@ const SparePartsPage = () => {
           <CategoryTree />
         </div>
         <div className="flex-1">
-          <ProductGrid />
+          <ProductGrid/>
         </div>
         <div className="w-full md:w-1/4">
           <FilterSidebar />
