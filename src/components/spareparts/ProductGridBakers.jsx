@@ -75,12 +75,12 @@ const ProductGridBakers = ({ view }) => {
         {currentProducts.map((product) => (
           <div
             key={product.id}
-            className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 group"
+            className="bg-gray-50 border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 group"
           >
             {view === 'list' ? (
               <div className="flex flex-col md:flex-row items-center gap-6">
                 {/* Left: Image */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 bg-white rounded-lg shadow-sm p-2">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -90,7 +90,7 @@ const ProductGridBakers = ({ view }) => {
 
                 {/* Middle: Details */}
                 <div className="flex-grow space-y-2">
-                  <h3 className="text-xl font-bold text-gray-800 underline">
+                  <h3 className="text-xl font-bold text-gray-800">
                     {product.name}
                   </h3>
                   <p className="text-gray-700 text-sm">
@@ -131,11 +131,13 @@ const ProductGridBakers = ({ view }) => {
             ) : (
               <>
                 {/* Grid View */}
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-40 object-contain mb-3"
-                />
+                <div className="bg-white rounded-lg p-3 mb-3 shadow-sm">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-40 object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-800 text-center">
                   {product.name}
                 </h3>
