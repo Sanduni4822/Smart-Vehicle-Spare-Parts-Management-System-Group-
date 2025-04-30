@@ -8,7 +8,7 @@ import ResetPasswordPage from './pages/login/ResetPasswordPage';
 import SignUpPage from './pages/Signup/SignupPage';
 import SparePartsPage from './pages/spareparts/SparePartsPage';
 import BrakersViewDetailsPage from './pages/spareparts/BrakersViewDetailsPage';
-import AddToCartPage from './pages/spareparts/AddToCartPage'; // ✅ New import
+import AddToCartPage from './pages/spareparts/AddToCartPage'; 
 
 function App() {
   return (

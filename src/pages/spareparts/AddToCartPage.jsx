@@ -7,6 +7,7 @@ const AddToCartPage = () => {
   const product = currentProducts.find(p => p.id === parseInt(id));
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState('');
+  const [wishlisted, setWishlisted] = useState(false);
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded">
@@ -15,7 +16,7 @@ const AddToCartPage = () => {
         <strong>Product Code:</strong> <span className="text-gray-700">#BKR5E-11</span>
       </p>
 
-      {/*  Tags */}
+      {/* Tags */}
       <p className="mb-4 text-sm">
         <span className="font-medium">Tags:</span>{" "}
         <span className="text-red-500">NGK Genuine Spark Plug</span>
@@ -29,7 +30,9 @@ const AddToCartPage = () => {
 
       {/* Size Dropdown */}
       <div className="mb-6">
-        <label className="block mb-1 text-sm font-semibold">Size <span className="text-red-500">*</span></label>
+        <label className="block mb-1 text-sm font-semibold">
+          Size <span className="text-red-500">*</span>
+        </label>
         <select
           value={size}
           onChange={(e) => setSize(e.target.value)}
@@ -62,11 +65,18 @@ const AddToCartPage = () => {
         </button>
       </div>
 
-      {/* Wishlist / Compare */}
+      {/* Wishlist */}
       <div className="flex gap-8 text-sm font-semibold text-gray-600 mb-6">
-        <button className="hover:underline">♡ Wishlist</button>
+        <button
+          onClick={() => setWishlisted(!wishlisted)}
+          className="flex items-center gap-2 outline-none"
+        >
+          <span className={`${wishlisted ? "text-red-600" : "text-gray-500"} text-2xl`}>
+            {wishlisted ? "♥" : "♡"}
+          </span>
+          <span className="text-gray-700 text-base">Wishlist</span>
+        </button>
       </div>
-
     </div>
   );
 };
