@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Acdelco from '../../assets/sparepartspage/viewdetails/Acdelco.png';
 import Bosch from '../../assets/sparepartspage/viewdetails/Bosch.png';
 import Denso from '../../assets/sparepartspage/viewdetails/Denso.png';
@@ -64,10 +65,11 @@ export const currentProducts = [
 ];
 
 const ProductGridBakers = ({ view }) => {
+  const navigate = useNavigate();
   const containerClass =
     view === 'grid'
       ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'
-      : 'flex flex-col gap-6'; // stacked list for list view
+      : 'flex flex-col gap-6';
 
   return (
     <div className="px-4 py-6">
@@ -90,34 +92,23 @@ const ProductGridBakers = ({ view }) => {
 
                 {/* Middle: Details */}
                 <div className="flex-grow space-y-2">
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-700 text-sm">
-                    <strong>Brand:</strong> {product.brand}
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-800">{product.name}</h3>
+                  <p className="text-gray-700 text-sm"><strong>Brand:</strong> {product.brand}</p>
                   <p className="text-gray-700 text-sm">
                     <strong>Stock:</strong>{' '}
-                    <span
-                      className={
-                        product.stock === 'Sold out'
-                          ? 'text-red-500'
-                          : 'text-green-600'
-                      }
-                    >
+                    <span className={product.stock === 'Sold out' ? 'text-red-500' : 'text-green-600'}>
                       {product.stock}
                     </span>
                   </p>
                   <p className="text-sm text-gray-600">{product.description}</p>
                 </div>
 
-                {/* Right: Price + Buttons */}
+                {/* Right: Price + Button */}
                 <div className="flex flex-col items-center justify-center space-y-3 min-w-[160px]">
-                  <p className="text-red-600 text-xl font-bold">
-                    Rs {product.price}.00
-                  </p>
+                  <p className="text-red-600 text-xl font-bold">Rs {product.price}.00</p>
                   <button
                     disabled={product.stock === 'Sold out'}
+                    onClick={() => navigate('/add-to-cart')}
                     className={`w-[130px] px-4 py-2 rounded-full font-medium transition ${
                       product.stock === 'Sold out'
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -138,15 +129,12 @@ const ProductGridBakers = ({ view }) => {
                     className="w-full h-40 object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 text-center">
-                  {product.name}
-                </h3>
-                <p className="text-red-600 font-bold text-center mb-2">
-                  Rs {product.price}.00
-                </p>
+                <h3 className="text-lg font-semibold text-gray-800 text-center">{product.name}</h3>
+                <p className="text-red-600 font-bold text-center mb-2">Rs {product.price}.00</p>
                 <div className="flex justify-center">
                   <button
                     disabled={product.stock === 'Sold out'}
+                    onClick={() => navigate('/add-to-cart')}
                     className={`px-6 py-2 rounded-full transition-opacity duration-300 ${
                       product.stock === 'Sold out'
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'

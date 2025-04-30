@@ -88,11 +88,6 @@ const ProductGrid = () => {
                 >
                   View Details
                 </button>
-
-                <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700">
-                  <FaShoppingCart className="text-white" />
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

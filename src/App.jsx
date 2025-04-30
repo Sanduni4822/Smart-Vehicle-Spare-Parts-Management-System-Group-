@@ -8,7 +8,7 @@ import ResetPasswordPage from './pages/login/ResetPasswordPage';
 import SignUpPage from './pages/Signup/SignupPage';
 import SparePartsPage from './pages/spareparts/SparePartsPage';
 import BrakersViewDetailsPage from './pages/spareparts/BrakersViewDetailsPage';
-
+import AddToCartPage from './pages/spareparts/AddToCartPage'; // ✅ New import
 
 function App() {
   return (
@@ -25,7 +25,8 @@ function App() {
             <Route path="/resetp" element={<ResetPasswordPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/spareparts" element={<SparePartsPage />} />
-            <Route path="/dkkk" element={<BrakersViewDetailsPage/>} />
+            <Route path="/dkkk" element={<BrakersViewDetailsPage />} />
+            <Route path="/add-to-cart" element={<AddToCartPage />} /> 
           </Routes>
         </main>
 
