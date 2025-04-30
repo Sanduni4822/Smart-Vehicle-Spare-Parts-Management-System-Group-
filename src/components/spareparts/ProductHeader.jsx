@@ -5,7 +5,16 @@ const ProductHeader = ({ productCount = 21 }) => {
   const [view, setView] = useState('grid');
   const [sortOption, setSortOption] = useState('Featured');
 
-  const sortOptions = ['Featured', 'Price: Low to High', 'Price: High to Low', 'Newest'];
+  const sortOptions = [
+    'Featured',
+    'Best selling',
+    'Alphabetically, A-Z',
+    'Alphabetically, Z-A',
+    'Price, low to high',
+    'Price, high to low',
+    'Date, old to new',
+    'Date, new to old'
+  ];
 
   return (
     <div className="flex flex-wrap justify-between items-center px-4 py-2 border-b text-sm text-gray-700">
