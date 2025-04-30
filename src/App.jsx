@@ -14,6 +14,7 @@ import Footer from './components/footer/Footer';
 import FindGaragesPage from './pages/Garage/FindGaragesPage';
 
 
+
 function App() {
   return (
     <Router>

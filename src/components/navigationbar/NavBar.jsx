@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import {
   FaPhoneAlt,
@@ -17,12 +17,27 @@ import Garage from '../../assets/Garage.png';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollToContact?.(); // call the function defined in HomePage
+      }, 300);
+    } else {
+      window.scrollToContact?.();
+    }
+
+    // Close mobile menu if open
+    setMenuOpen(false);
+  };
 
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
       {/* Top Bar */}
       <div className="bg-gray-100 text-sm flex justify-between items-center px-4 py-2">
-        {/* Slightly reduced padding for top bar */}
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <FaEnvelope className="text-blue-600" />
@@ -47,14 +62,8 @@ const NavBar = () => {
 
       {/* Main Nav */}
       <div className="bg-white px-1 py-0 flex justify-between items-center min-h-[50px]">
-        {/* Much tighter padding for second nav bar */}
-        {/* Logo */}
         <div className="flex items-center">
-          <img
-            src={Garage}
-            alt="Logo"
-            className="h-12 md:h-16 w-auto object-contain"
-          />
+          <img src={Garage} alt="Logo" className="h-12 md:h-16 w-auto object-contain" />
         </div>
 
         {/* Desktop Nav */}
@@ -77,7 +86,6 @@ const NavBar = () => {
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
           </div>
-          {/* Hamburger Menu Button */}
           <button className="md:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -98,9 +106,8 @@ const NavBar = () => {
           <a href="#">Contact</a>
           {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}
           <Link to="/login" onClick={() => setMenuOpen(false)}>
-             <FaUser className="inline mr-1" /> Login
+            <FaUser className="inline mr-1" /> Login
           </Link>
-
         </nav>
       )}
     </header>
