@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -17,20 +16,19 @@ import Garage from '../../assets/Garage.png';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const currentlocation = useLocation();
   const navigate = useNavigate();
 
   const handleContactClick = () => {
-    if (location.pathname !== '/') {
+    if (currentlocation.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
-        window.scrollToContact?.(); // call the function defined in HomePage
+        window.scrollToContact?.();
       }, 300);
     } else {
       window.scrollToContact?.();
     }
 
-    // Close mobile menu if open
     setMenuOpen(false);
   };
 
@@ -70,15 +68,12 @@ const NavBar = () => {
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-sm">
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <Link to="/emer" className="hover:text-blue-600">Emergency</Link>
-          <a href="#" className="hover:text-blue-600">Spare Parts</a>
-          <Link to="/garage" className="hover:text-blue-600">Find Garages</Link>
-          {/* <a href="#" className="hover:text-blue-600">Find Garages</a> */}
-          {/* <a href="#" className="hover:text-blue-600">Emergency</a> */}
-          {/* <a href="#" className="hover:text-blue-600">About</a> */}
           <Link to="/spareparts" className="hover:text-blue-600">Spare Parts</Link>
+          <Link to="/garage" className="hover:text-blue-600">Find Garages</Link>
           <Link to="/aboutus" className="hover:text-blue-600">About</Link>
-          <a href="#" className="hover:text-blue-600">Contact</a>
-
+          <button onClick={handleContactClick} className="hover:text-blue-600">
+            Contact
+          </button>
         </nav>
 
         {/* Icons */}
@@ -97,18 +92,11 @@ const NavBar = () => {
       {menuOpen && (
         <nav className="flex flex-col items-center md:hidden bg-white gap-4 py-4 shadow-md text-gray-700 font-medium">
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <a href="#">Spare Parts</a>
-          {/* <a href="#">Find Garages</a> */}
+          <Link to="/spareparts" onClick={() => setMenuOpen(false)}>Spare Parts</Link>
           <Link to="/emer" onClick={() => setMenuOpen(false)}>Emergency</Link>
-          {/* <a href="#">Emergency</a> */}
-          {/* <a href="#">About</a> */}
           <Link to="/garage" onClick={() => setMenuOpen(false)}>Find Garages</Link>
           <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
-          <a href="#">Contact</a>
-          {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}
-          <Link to="/spareparts" onClick={() => setMenuOpen(false)}>
-             <FaUser className="inline mr-1" /> Spare Parts
-          </Link>
+          <button onClick={handleContactClick}>Contact</button>
           <Link to="/login" onClick={() => setMenuOpen(false)}>
             <FaUser className="inline mr-1" /> Login
           </Link>
