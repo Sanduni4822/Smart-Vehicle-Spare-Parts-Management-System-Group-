@@ -41,9 +41,9 @@ const ProductGridBakers = () => {
               Rs {product.price}.00
             </p>
 
-            {/* Button only shows on hover */}
+            {/* Button: rounded and shown only on hover */}
             <div className="flex justify-center">
-              <button className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <button className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Add to Cart
               </button>
             </div>
