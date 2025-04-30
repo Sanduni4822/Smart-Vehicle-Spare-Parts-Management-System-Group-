@@ -18,20 +18,35 @@ const currentProducts = [
 const ProductGridBakers = () => {
   return (
     <div className="px-4 py-6">
-      {/* Removed product count */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {currentProducts.map((product) => (
           <div
             key={product.id}
-            className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300"
+            className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 group"
           >
+            {/* Image */}
             <img
               src={product.image}
               alt={product.name}
               className="w-full h-40 object-contain mb-3"
             />
-            <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-            <p className="text-red-600 font-bold mb-2">Rs {product.price}.00</p>
+
+            {/* Title */}
+            <h3 className="text-lg font-semibold text-gray-800 text-center">
+              {product.name}
+            </h3>
+
+            {/* Price */}
+            <p className="text-red-600 font-bold text-center mb-2">
+              Rs {product.price}.00
+            </p>
+
+            {/* Button only shows on hover */}
+            <div className="flex justify-center">
+              <button className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>
