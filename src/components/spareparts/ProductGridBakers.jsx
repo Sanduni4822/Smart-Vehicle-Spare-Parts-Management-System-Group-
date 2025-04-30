@@ -78,37 +78,59 @@ const ProductGridBakers = ({ view }) => {
             className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 group"
           >
             {view === 'list' ? (
-              <div className="flex flex-col md:flex-row gap-4 items-center">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-32 h-32 object-contain"
-                />
-                <div className="flex-1 space-y-1">
-                  <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-                  <p><strong>Brand:</strong> {product.brand}</p>
-                  <p>
-                    <strong>Stock:</strong>{" "}
-                    <span className={product.stock === 'Sold out' ? 'text-red-500' : 'text-green-600'}>
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                {/* Left: Image */}
+                <div className="flex-shrink-0">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-40 h-40 object-contain"
+                  />
+                </div>
+
+                {/* Middle: Details */}
+                <div className="flex-grow space-y-2">
+                  <h3 className="text-xl font-bold text-gray-800 underline">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-700 text-sm">
+                    <strong>Brand:</strong> {product.brand}
+                  </p>
+                  <p className="text-gray-700 text-sm">
+                    <strong>Stock:</strong>{' '}
+                    <span
+                      className={
+                        product.stock === 'Sold out'
+                          ? 'text-red-500'
+                          : 'text-green-600'
+                      }
+                    >
                       {product.stock}
                     </span>
                   </p>
-                  <p>{product.description}</p>
-                  <p className="text-red-600 font-bold text-lg">Rs {product.price}.00</p>
+                  <p className="text-sm text-gray-600">{product.description}</p>
+                </div>
+
+                {/* Right: Price + Buttons */}
+                <div className="flex flex-col items-center justify-center space-y-3 min-w-[160px]">
+                  <p className="text-red-600 text-xl font-bold">
+                    Rs {product.price}.00
+                  </p>
                   <button
                     disabled={product.stock === 'Sold out'}
-                    className={`px-6 py-2 rounded-full mt-2 transition-opacity duration-300 ${
+                    className={`w-[130px] px-4 py-2 rounded-full font-medium transition ${
                       product.stock === 'Sold out'
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         : 'bg-red-600 text-white hover:bg-red-700'
                     }`}
                   >
-                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to Cart'}
+                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to cart'}
                   </button>
                 </div>
               </div>
             ) : (
               <>
+                {/* Grid View */}
                 <img
                   src={product.image}
                   alt={product.name}
@@ -129,7 +151,7 @@ const ProductGridBakers = ({ view }) => {
                         : 'bg-red-600 text-white hover:bg-red-700 opacity-0 group-hover:opacity-100'
                     }`}
                   >
-                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to Cart'}
+                    {product.stock === 'Sold out' ? 'Unavailable' : 'Add to cart'}
                   </button>
                 </div>
               </>
