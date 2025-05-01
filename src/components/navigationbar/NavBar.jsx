@@ -62,7 +62,8 @@ const NavBar = () => {
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <Link to="/emer" className="hover:text-blue-600">Emergency</Link>
           <a href="#" className="hover:text-blue-600">Spare Parts</a>
-          <a href="#" className="hover:text-blue-600">Find Garages</a>
+          <Link to="/garage" className="hover:text-blue-600">Find Garages</Link>
+          {/* <a href="#" className="hover:text-blue-600">Find Garages</a> */}
           {/* <a href="#" className="hover:text-blue-600">Emergency</a> */}
           {/* <a href="#" className="hover:text-blue-600">About</a> */}
           <Link to="/aboutus" className="hover:text-blue-600">About</Link>
@@ -88,10 +89,11 @@ const NavBar = () => {
         <nav className="flex flex-col items-center md:hidden bg-white gap-4 py-4 shadow-md text-gray-700 font-medium">
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <a href="#">Spare Parts</a>
-          <a href="#">Find Garages</a>
+          {/* <a href="#">Find Garages</a> */}
           <Link to="/emer" onClick={() => setMenuOpen(false)}>Emergency</Link>
           {/* <a href="#">Emergency</a> */}
           {/* <a href="#">About</a> */}
+          <Link to="/garage" onClick={() => setMenuOpen(false)}>Find Garages</Link>
           <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
           <a href="#">Contact</a>
           {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}

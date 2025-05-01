@@ -11,6 +11,7 @@ import PastReportsPage from './pages/emergency/PastReportsPage';
 import ReportIncidentPage from './pages/emergency/ReportIncidentPage';
 import AboutUs from './pages/aboutus/AboutUs';
 import Footer from './components/footer/Footer';
+import FindGaragesPage from './pages/Garage/FindGaragesPage';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/add_report" element={<ReportIncidentPage/>} />
             <Route path="/past_reports" element={<PastReportsPage/>} />
             <Route path="/aboutus" element={<AboutUs/>}/>
+            <Route path="/garage" element={<FindGaragesPage/>}/>
           </Routes>
         </main>
 
