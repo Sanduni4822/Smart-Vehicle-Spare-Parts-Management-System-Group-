@@ -1,12 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navigationbar/NavBar';
-import Footer from './components/footer/Footer';
+
 import HomePage from './pages/homepage/HomePage';
 import LoginPage from './pages/Login/LoginPage';
 import ResetPasswordPage from './pages/login/ResetPasswordPage';
 import SignUpPage from './pages/Signup/SignupPage';
+import EmergencyAssistance from './pages/emergency/EmergencyAssistance';
+import PastReportsPage from './pages/emergency/PastReportsPage';
+import ReportIncidentPage from './pages/emergency/ReportIncidentPage';
 import AboutUs from './pages/aboutus/AboutUs';
+import Footer from './components/footer/Footer';
+
 
 function App() {
   return (
@@ -22,12 +27,15 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/resetp" element={<ResetPasswordPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/aboutus" element={<AboutUs/>} />
+            <Route path="/emer" element={<EmergencyAssistance/>} />
+            <Route path="/add_report" element={<ReportIncidentPage/>} />
+            <Route path="/past_reports" element={<PastReportsPage/>} />
+            <Route path="/aboutus" element={<AboutUs/>}/>
           </Routes>
         </main>
 
         {/* Footer Sticks to Bottom */}
-        <Footer />
+        <Footer/>
       </div>
     </Router>
   );

@@ -60,12 +60,14 @@ const NavBar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-sm">
           <Link to="/" className="hover:text-blue-600">Home</Link>
+          <Link to="/emer" className="hover:text-blue-600">Emergency</Link>
           <a href="#" className="hover:text-blue-600">Spare Parts</a>
           <a href="#" className="hover:text-blue-600">Find Garages</a>
-          <a href="#" className="hover:text-blue-600">Emergency</a>
-          <Link to="/aboutus" className="hover:text-blue-600">About</Link>
+          {/* <a href="#" className="hover:text-blue-600">Emergency</a> */}
           {/* <a href="#" className="hover:text-blue-600">About</a> */}
+          <Link to="/aboutus" className="hover:text-blue-600">About</Link>
           <a href="#" className="hover:text-blue-600">Contact</a>
+
         </nav>
 
         {/* Icons */}
@@ -87,12 +89,10 @@ const NavBar = () => {
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <a href="#">Spare Parts</a>
           <a href="#">Find Garages</a>
-          <a href="#">Emergency</a>
+          <Link to="/emer" onClick={() => setMenuOpen(false)}>Emergency</Link>
+          {/* <a href="#">Emergency</a> */}
           {/* <a href="#">About</a> */}
-          <Link to="/aboutus" onClick={() => setMenuOpen(false)}>
-             <FaUser className="inline mr-1" /> About
-          </Link>
-          
+          <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
           <a href="#">Contact</a>
           {/* <a href="#"><FaUser className="inline mr-1" /> Login</a> */}
           <Link to="/login" onClick={() => setMenuOpen(false)}>
