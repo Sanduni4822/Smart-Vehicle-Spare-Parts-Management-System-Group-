@@ -49,7 +49,7 @@ const products = [
 const ProductGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
-  const navigate = useNavigate(); // ✅ USE THIS
+  const navigate = useNavigate(); 
 
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
@@ -81,13 +81,17 @@ const ProductGrid = () => {
                 <button
                   onClick={() => {
                     if (product.name.toLowerCase() === 'brakers') {
-                      navigate('/dkkk'); //  Navigate to Brakers page
+                      navigate('/braker'); //  Navigate to Brakers page
+                    }
+                    if (product.name.toLowerCase() === 'bumper grills') {
+                      navigate('/bumper'); //  Navigate to Bumpers page
                     }
                   }}
                   className="flex items-center justify-center px-4 py-2 border border-blue-400 text-blue-600 rounded-full hover:bg-blue-50"
                 >
                   View Details
                 </button>
+                
               </div>
             </div>
           </div>
