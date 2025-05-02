@@ -92,6 +92,27 @@ const ProductGrid = () => {
                     if (product.name.toLowerCase() === 'car sensor') {
                       navigate('/carsensor'); //  Navigate to Car Sensor page
                     }
+                    if (product.name.toLowerCase() === 'cooling systems') {
+                      navigate('/coolingsystem'); 
+                    }
+                    if (product.name.toLowerCase() === 'drivetrain') {
+                      navigate('/drivetrain'); 
+                    }
+                    if (product.name.toLowerCase() === 'fenders') {
+                      navigate('/fender'); 
+                    }
+                    if (product.name.toLowerCase() === 'fog lights') {
+                      navigate('/foglight'); 
+                    }
+                    if (product.name.toLowerCase() === 'front bumpers') {
+                      navigate('/frontbumpers'); 
+                    }
+                    if (product.name.toLowerCase() === 'fuel & air') {
+                      navigate('/fuelair'); 
+                    }
+                    if (product.name.toLowerCase() === 'headlights') {
+                      navigate('/headlight'); 
+                    }
                   }}
                   className="flex items-center justify-center px-4 py-2 border border-blue-400 text-blue-600 rounded-full hover:bg-blue-50"
                 >

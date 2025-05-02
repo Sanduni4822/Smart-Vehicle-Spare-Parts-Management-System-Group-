@@ -17,8 +17,13 @@ import SparePartsPage from './pages/spareparts/SparePartsPage';
 import BumperGrillsViewDetailsPage from './pages/spareparts/BumperGrillsViewDetailsPage';
 import CarDoorsViewDetailsPage from './pages/spareparts/CarDoorsViewDetailsPage';
 import CarSensorViewDetailsPage from './pages/spareparts/CarSensorViewDetailsPage';
-
-
+import CoolingSystemViewDetailsPage from './pages/spareparts/CoolingSystemViewDetailsPage';
+import DrivetrainViewDetailsPage from './pages/spareparts/DrivetrainViewDetailsPage';
+import FenderViewDetailsPage from './pages/spareparts/FendersViewDetailsPage';
+import FoglightViewDetailsPage from './pages/spareparts/FoglightViewDetailsPage';
+import FrontBumpersViewDetailsPage from './pages/spareparts/FrontBumpersViewDetailsPage';
+import FuelAirViewDetailsPage from './pages/spareparts/FuelAirViewDetailsPage';
+import HeadlightViewDetailsPage from './pages/spareparts/HeadlightsViewDetailsPage';
 
 function App() {
   return (
@@ -45,6 +50,13 @@ function App() {
             <Route path="/bumper" element={<BumperGrillsViewDetailsPage />} />
             <Route path="/cardoor" element={<CarDoorsViewDetailsPage/>} />
             <Route path="/carsensor" element={<CarSensorViewDetailsPage/>} />
+            <Route path="/coolingsystem" element={<CoolingSystemViewDetailsPage/>} />
+            <Route path="/drivetrain" element={<DrivetrainViewDetailsPage/>} />
+            <Route path="/fender" element={<FenderViewDetailsPage/>} />
+            <Route path="/foglight" element={<FoglightViewDetailsPage/>} />
+            <Route path="/frontbumpers" element={<FrontBumpersViewDetailsPage/>} />
+            <Route path="/fuelair" element={<FuelAirViewDetailsPage/>} />
+            <Route path="/headlight" element={<HeadlightViewDetailsPage/>} />
           </Routes>
         </main>
 
