@@ -15,7 +15,8 @@ import BrakersViewDetailsPage from './pages/spareparts/BrakersViewDetailsPage';
 import AddToCartPage from './pages/spareparts/AddToCartPage';
 import SparePartsPage from './pages/spareparts/SparePartsPage';
 import BumperGrillsViewDetailsPage from './pages/spareparts/BumperGrillsViewDetailsPage';
-
+import CarDoorsViewDetailsPage from './pages/spareparts/CarDoorsViewDetailsPage';
+import CarSensorViewDetailsPage from './pages/spareparts/CarSensorViewDetailsPage';
 
 
 
@@ -42,6 +43,8 @@ function App() {
             <Route path="/braker" element={<BrakersViewDetailsPage/>} />
             <Route path="/add-to-cart" element={<AddToCartPage />} />
             <Route path="/bumper" element={<BumperGrillsViewDetailsPage />} />
+            <Route path="/cardoor" element={<CarDoorsViewDetailsPage/>} />
+            <Route path="/carsensor" element={<CarSensorViewDetailsPage/>} />
           </Routes>
         </main>
 

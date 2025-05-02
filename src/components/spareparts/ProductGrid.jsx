@@ -86,6 +86,12 @@ const ProductGrid = () => {
                     if (product.name.toLowerCase() === 'bumper grills') {
                       navigate('/bumper'); //  Navigate to Bumpers page
                     }
+                    if (product.name.toLowerCase() === 'car doors') {
+                      navigate('/cardoor'); //  Navigate to Car Doors page
+                    }
+                    if (product.name.toLowerCase() === 'car sensor') {
+                      navigate('/carsensor'); //  Navigate to Car Sensor page
+                    }
                   }}
                   className="flex items-center justify-center px-4 py-2 border border-blue-400 text-blue-600 rounded-full hover:bg-blue-50"
                 >
