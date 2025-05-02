@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";  // Importing useNavigate
 import { currentProducts } from "../../components/spareparts/ProductGridBakers";
 
 const AddToCartPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // useNavigate hook for navigation
   const product = currentProducts.find(p => p.id === parseInt(id));
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState('');
   const [wishlisted, setWishlisted] = useState(false);
+
+  const handleAddToCart = () => {
+    // Navigate to the ShoppingCartPage after clicking "Add to Cart"
+    navigate('/shopping-cart', { state: { product: { ...product, quantity } } });
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded">
@@ -59,6 +65,7 @@ const AddToCartPage = () => {
           >+</button>
         </div>
         <button
+          onClick={handleAddToCart} // Trigger navigation on click
           className="border border-red-600 text-red-600 px-6 py-2 rounded hover:bg-red-600 hover:text-white transition text-sm font-semibold"
         >
           🛒 ADD TO CART

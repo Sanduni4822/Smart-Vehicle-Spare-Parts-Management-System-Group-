@@ -24,6 +24,7 @@ import FoglightViewDetailsPage from './pages/spareparts/FoglightViewDetailsPage'
 import FrontBumpersViewDetailsPage from './pages/spareparts/FrontBumpersViewDetailsPage';
 import FuelAirViewDetailsPage from './pages/spareparts/FuelAirViewDetailsPage';
 import HeadlightViewDetailsPage from './pages/spareparts/HeadlightsViewDetailsPage';
+import ShoppingCartPage from './pages/spareparts/ShoppingCartPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
             <Route path="/frontbumpers" element={<FrontBumpersViewDetailsPage/>} />
             <Route path="/fuelair" element={<FuelAirViewDetailsPage/>} />
             <Route path="/headlight" element={<HeadlightViewDetailsPage/>} />
+            <Route path="/shopping-cart" element={<ShoppingCartPage/>} />
           </Routes>
         </main>
 
