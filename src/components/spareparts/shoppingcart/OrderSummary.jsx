@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const OrderSummary = ({ totalPrice, handleShippingMethodChange, handleProceedToCheckout }) => {
+const OrderSummary = ({ totalPrice, handleShippingMethodChange }) => {
+  const navigate = useNavigate();
+
+  const handleProceedToCheckout = () => {
+    navigate("/checkout"); //  Navigate to Checkout page
+  };
+
   return (
     <div className="w-full md:w-1/3 mt-6 md:mt-0">
       <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
@@ -14,7 +21,7 @@ const OrderSummary = ({ totalPrice, handleShippingMethodChange, handleProceedToC
                 type="radio"
                 name="shipping-method"
                 value="local-pickup"
-                checked
+                defaultChecked
                 onChange={handleShippingMethodChange}
                 className="form-radio"
               />
