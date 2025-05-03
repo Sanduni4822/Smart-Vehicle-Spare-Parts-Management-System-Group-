@@ -14,7 +14,7 @@ import {
 } from 'react-icons/fa';
 import Garage from '../../assets/Garage.png';
 
-const NavBar = () => {
+const NavBar = ({ handleSidebarToggle }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const currentlocation = useLocation();
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ const NavBar = () => {
     } else {
       window.scrollToContact?.();
     }
-
     setMenuOpen(false);
   };
 
@@ -71,17 +70,18 @@ const NavBar = () => {
           <Link to="/spareparts" className="hover:text-blue-600">Spare Parts</Link>
           <Link to="/garage" className="hover:text-blue-600">Find Garages</Link>
           <Link to="/aboutus" className="hover:text-blue-600">About</Link>
-          <button onClick={handleContactClick} className="hover:text-blue-600">
-            Contact
-          </button>
+          <button onClick={handleContactClick} className="hover:text-blue-600">Contact</button>
         </nav>
 
         {/* Icons */}
         <div className="flex items-center gap-3 text-gray-700 text-sm">
-          <div className="flex items-center gap-1">
+          <button
+            className="flex items-center gap-1"
+            onClick={handleSidebarToggle} // 🔁 Trigger the Drawer from MainLayout
+          >
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
-          </div>
+          </button>
           <button className="md:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>

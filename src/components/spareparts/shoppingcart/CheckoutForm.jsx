@@ -5,7 +5,7 @@ const CheckoutForm = () => {
   const [shipToDifferentAddress, setShipToDifferentAddress] = useState(false);
 
   return (
-    <div className="bg-blue-50 p-8 rounded shadow">
+    <div className="bg-blue-50 p-11 rounded shadow">
       {/* Account Details */}
       <h2 className="text-lg font-semibold mb-2">Account Details</h2>
       <hr className="border-red-500 w-10 mb-4" />
