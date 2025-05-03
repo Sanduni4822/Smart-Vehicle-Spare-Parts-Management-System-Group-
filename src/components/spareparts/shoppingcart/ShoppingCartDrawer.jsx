@@ -61,13 +61,13 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
           <div className="px-6 py-4 border-t flex gap-4">
             <Link
               to="/shopping-cart"
-              className="w-1/2 py-2 border border-gray-400 text-gray-800 text-center font-bold rounded"
+              className="w-1/2 py-2 bg-white border border-red-500 text-black text-center font-bold rounded hover:bg-white transition"
             >
               VIEW CART
             </Link>
             <Link
               to="/checkout"
-              className="w-1/2 py-2 bg-red-600 text-white text-center font-bold rounded hover:bg-red-700"
+              className="w-1/2 py-2 bg-red-600 text-white text-center font-bold rounded hover:bg-red-700 transition"
             >
               CHECKOUT
             </Link>
