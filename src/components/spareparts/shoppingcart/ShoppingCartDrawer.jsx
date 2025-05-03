@@ -9,7 +9,7 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
   // Navigate to cart page with product and quantity
   const handleViewCart = () => {
     handleCloseSidebar(); // Close the drawer first
-    navigate("/shopping-cart", { state: { product: { ...product, quantity } } });
+    navigate("/view-cart", { state: { product: { ...product, quantity } } });
   };
 
   return (

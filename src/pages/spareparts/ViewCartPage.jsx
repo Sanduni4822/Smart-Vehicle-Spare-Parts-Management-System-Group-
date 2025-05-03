@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import CartItem from "../../components/spareparts/shoppingcart/CartItem";
 import OrderSummary from "../../components/spareparts/shoppingcart/OrderSummary";
 
-const ShoppingCartPage = () => {
+const ViewCartPage = () => {
   const location = useLocation();
   const product = location.state?.product;
 
@@ -51,4 +51,4 @@ const ShoppingCartPage = () => {
   );
 };
 
-export default ShoppingCartPage;
+export default ViewCartPage;
