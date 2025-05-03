@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";  // Importing useNavigate
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';  
 import { currentProducts } from "../../components/spareparts/ProductGridBakers";
+import ShoppingCartDrawer from '../../components/spareparts/shoppingcart/ShoppingCartDrawer';
 
 const AddToCartPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate(); // useNavigate hook for navigation
-  const product = currentProducts.find(p => p.id === parseInt(id));
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState('');
-  const [wishlisted, setWishlisted] = useState(false);
+  const { id } = useParams();  // Get product ID from URL
+  const product = currentProducts.find(p => p.id === parseInt(id));  // Find product by ID
+  const [quantity, setQuantity] = useState(1);  // Quantity of product added to cart
+  const [size, setSize] = useState('');  // Size of the product selected
+  const [wishlisted, setWishlisted] = useState(false);  // Wishlist status
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);  // Sidebar visibility state
 
-  const handleAddToCart = () => {
-    // Navigate to the ShoppingCartPage after clicking "Add to Cart"
-    navigate('/shopping-cart', { state: { product: { ...product, quantity } } });
+  // Handle Add to Cart button click
+  const handleAddToCart = (e) => {
+    e.preventDefault(); // Prevent default behavior (form submission or link navigation)
+    setIsSidebarVisible(true);  // Show the sidebar when "Add to Cart" is clicked
+  };
+
+  // Handle Sidebar Close
+  const handleCloseSidebar = () => {
+    setIsSidebarVisible(false);  // Close the sidebar when the close button is clicked
   };
 
   return (
@@ -65,7 +72,7 @@ const AddToCartPage = () => {
           >+</button>
         </div>
         <button
-          onClick={handleAddToCart} // Trigger navigation on click
+          onClick={handleAddToCart} // Trigger sidebar visibility on click
           className="border border-red-600 text-red-600 px-6 py-2 rounded hover:bg-red-600 hover:text-white transition text-sm font-semibold"
         >
           🛒 ADD TO CART
@@ -84,6 +91,14 @@ const AddToCartPage = () => {
           <span className="text-gray-700 text-base">Wishlist</span>
         </button>
       </div>
+
+      {/* Sidebar Cart */}
+      <ShoppingCartDrawer
+        isSidebarVisible={isSidebarVisible} 
+        product={product} 
+        quantity={quantity} 
+        handleCloseSidebar={handleCloseSidebar} 
+      />
     </div>
   );
 };

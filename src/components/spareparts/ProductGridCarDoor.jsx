@@ -10,7 +10,7 @@ export const currentProducts = [
     price: 1800,
     image: Acdelcocardoorpanel,
     description: 'High-performance OEM brake rotor for safe driving.',
-    stock: 'Sold out',
+    stock: 'In Stock',
     brand: 'Acdel',
   },
 ];
