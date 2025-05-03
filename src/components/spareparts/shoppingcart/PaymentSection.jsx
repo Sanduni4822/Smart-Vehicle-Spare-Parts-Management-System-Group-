@@ -2,7 +2,7 @@ import React from "react";
 
 const PaymentSection = () => {
   return (
-    <div className="bg-blue-50 p-6 rounded shadow w-full max-w-md">
+    <div className="bg-blue-50 pt-10 pb-10 px-6 rounded shadow w-full max-w-md">
       {/* Payment Method */}
       <h3 className="font-semibold text-lg">Payment Method</h3>
       <hr className="border-red-500 w-12 my-2" />
@@ -29,13 +29,14 @@ const PaymentSection = () => {
       {/* Coupon Verification */}
       <h3 className="font-semibold text-lg">Coupon Verification</h3>
       <hr className="border-red-500 w-12 my-2" />
+
       <div className="flex mt-2">
         <input
           type="text"
           placeholder="Enter coupon code"
-          className="border rounded-l px-4 py-2 w-full"
+          className="border rounded-l px-4 py-2 w-full text-sm"
         />
-        <button className="bg-red-600 text-white px-4 py-2 rounded-r font-semibold hover:bg-red-700">
+        <button className="bg-red-600 text-white text-xs px-4 py-2 rounded-r font-semibold hover:bg-red-700 whitespace-nowrap">
           APPLY COUPON
         </button>
       </div>
