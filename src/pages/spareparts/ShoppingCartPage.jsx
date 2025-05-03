@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import CartItem from "../../components/spareparts/shoppingcart/CartItem";
-import OrderSummary from "../../components/spareparts/ShoppingCart/OrderSummary";
+import OrderSummary from "../../components/spareparts/shoppingcart/OrderSummary";
 
 const ShoppingCartPage = () => {
   const location = useLocation();

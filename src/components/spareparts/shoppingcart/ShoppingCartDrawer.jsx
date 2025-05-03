@@ -1,9 +1,16 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, quantity }) => {
   const subtotal = product?.price * quantity;
+  const navigate = useNavigate();
+
+  // Navigate to cart page with product and quantity
+  const handleViewCart = () => {
+    handleCloseSidebar(); // Close the drawer first
+    navigate("/shopping-cart", { state: { product: { ...product, quantity } } });
+  };
 
   return (
     <>
@@ -59,18 +66,18 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
 
           {/* Action Buttons */}
           <div className="px-6 py-4 border-t flex gap-4">
-            <Link
-              to="/shopping-cart"
+            <button
+              onClick={handleViewCart}
               className="w-1/2 py-2 bg-white border border-red-600 text-red-600 text-center font-bold rounded hover:bg-red-600 hover:text-white transition"
             >
               VIEW CART
-            </Link>
-            <Link
-              to="/checkout"
+            </button>
+            <button
+              onClick={() => navigate("/checkout")}
               className="w-1/2 py-2 bg-red-600 text-white text-center font-bold rounded hover:bg-red-700 transition"
             >
               CHECKOUT
-            </Link>
+            </button>
           </div>
         </div>
       </div>
