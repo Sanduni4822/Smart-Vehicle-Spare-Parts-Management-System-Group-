@@ -31,7 +31,7 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
           </div>
 
           {/* Product Info */}
-          <div className="p-6 flex-grow">
+          <div className="p-6 flex-grow overflow-auto">
             <div className="flex items-center gap-4 mb-6">
               <img
                 src={product?.image}
@@ -45,9 +45,11 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Subtotal */}
-            <div className="flex justify-between items-center border-t pt-4 mt-4">
+          {/* Subtotal Section */}
+          <div className="border-t px-6 py-4">
+            <div className="flex justify-between items-center">
               <span className="text-base font-medium">Subtotal</span>
               <span className="text-base font-semibold text-red-600">
                 LKR {subtotal?.toLocaleString()}
@@ -55,7 +57,7 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
             </div>
           </div>
 
-          {/* Buttons */}
+          {/* Action Buttons */}
           <div className="px-6 py-4 border-t flex gap-4">
             <Link
               to="/shopping-cart"
