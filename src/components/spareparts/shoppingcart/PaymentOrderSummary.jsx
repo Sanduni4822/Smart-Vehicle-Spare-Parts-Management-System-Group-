@@ -2,9 +2,14 @@ import React, { useState } from "react";
 
 const PaymentOrderSummary = () => {
   const [shipping, setShipping] = useState("free");
+  const [agreed, setAgreed] = useState(false);
 
   const handleShippingChange = (method) => {
     setShipping(method);
+  };
+
+  const handleCheckboxChange = () => {
+    setAgreed(!agreed);
   };
 
   return (
@@ -31,47 +36,29 @@ const PaymentOrderSummary = () => {
       {/* Shipping Method */}
       <div className="mb-4">
         <h3 className="font-semibold mb-2">Shipping Method</h3>
-        <div className="flex items-center justify-between mb-2">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="shipping"
-              className="accent-red-600"
-              checked={shipping === "free"}
-              onChange={() => handleShippingChange("free")}
-            />
-            Free Shipping
-          </label>
-          <span>LKR 0.00</span>
-        </div>
 
-        <div className="flex items-center justify-between mb-2">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="shipping"
-              className="accent-red-600"
-              checked={shipping === "local"}
-              onChange={() => handleShippingChange("local")}
-            />
-            Local Pickup
-          </label>
-          <span>LKR 0.00</span>
-        </div>
-
-        <div className="flex items-center justify-between mb-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="shipping"
-              className="accent-red-600"
-              checked={shipping === "flat"}
-              onChange={() => handleShippingChange("flat")}
-            />
-            Flat Rate
-          </label>
-          <span>LKR 300.00</span>
-        </div>
+        {[
+          { label: "Free Shipping", value: "free", cost: "LKR 0.00" },
+          { label: "Local Pickup", value: "local", cost: "LKR 0.00" },
+          { label: "Flat Rate", value: "flat", cost: "LKR 300.00" },
+        ].map((method) => (
+          <div
+            key={method.value}
+            className="flex items-center justify-between mb-2"
+          >
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="shipping"
+                className="accent-red-600"
+                checked={shipping === method.value}
+                onChange={() => handleShippingChange(method.value)}
+              />
+              {method.label}
+            </label>
+            <span>{method.cost}</span>
+          </div>
+        ))}
       </div>
 
       {/* Total */}
@@ -82,7 +69,12 @@ const PaymentOrderSummary = () => {
 
       {/* Terms and Conditions */}
       <div className="flex items-center mb-4">
-        <input type="checkbox" className="mr-2" />
+        <input
+          type="checkbox"
+          className="mr-2"
+          checked={agreed}
+          onChange={handleCheckboxChange}
+        />
         <label>
           I agree to the{" "}
           <span className="text-red-600 font-medium">Terms & Conditions</span>
@@ -90,7 +82,14 @@ const PaymentOrderSummary = () => {
       </div>
 
       {/* Place Order Button */}
-      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded">
+      <button
+        disabled={!agreed}
+        className={`w-full py-3 rounded font-semibold transition-colors duration-300 ${
+          agreed
+            ? "bg-red-600 hover:bg-red-700 text-white"
+            : "bg-blue-500 hover:bg-red-600 text-white cursor-not-allowed"
+        }`}
+      >
         PLACE ORDER
       </button>
     </div>
