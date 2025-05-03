@@ -3,6 +3,8 @@ import { X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, quantity }) => {
+  const subtotal = product?.price * quantity;
+
   return (
     <>
       {/* Overlay */}
@@ -19,50 +21,53 @@ const ShoppingCartDrawer = ({ isSidebarVisible, handleCloseSidebar, product, qua
           isSidebarVisible ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="relative h-full p-6">
-          {/* Close button */}
-          <button
-            onClick={handleCloseSidebar}
-            className="absolute top-4 right-4 text-xl text-gray-500 hover:text-gray-800"
-          >
-            <X />
-          </button>
-
-          <h3 className="text-xl font-bold mb-6">Shopping Cart</h3>
+        <div className="flex flex-col h-full">
+          {/* Top Bar */}
+          <div className="bg-red-600 text-white px-6 py-4 flex justify-between items-center">
+            <h3 className="text-lg font-semibold">Shopping Cart</h3>
+            <button onClick={handleCloseSidebar} className="text-white">
+              <X />
+            </button>
+          </div>
 
           {/* Product Info */}
-          <div className="flex items-center gap-4 mb-4">
-            <img
-              src={product?.image}
-              alt={product?.name}
-              className="w-16 h-16 object-cover rounded"
-            />
-            <div>
-              <p className="font-medium">{product?.name}</p>
-              <p className="text-sm text-gray-600">
-                {quantity} × LKR {product?.price?.toLocaleString()}
-              </p>
+          <div className="p-6 flex-grow">
+            <div className="flex items-center gap-4 mb-6">
+              <img
+                src={product?.image}
+                alt={product?.name}
+                className="w-14 h-14 object-cover rounded"
+              />
+              <div className="flex flex-col">
+                <p className="font-medium text-sm truncate w-52">{product?.name}</p>
+                <p className="text-sm text-gray-600">
+                  {quantity} × LKR {product?.price?.toLocaleString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Subtotal */}
+            <div className="flex justify-between items-center border-t pt-4 mt-4">
+              <span className="text-base font-medium">Subtotal</span>
+              <span className="text-base font-semibold text-red-600">
+                LKR {subtotal?.toLocaleString()}
+              </span>
             </div>
           </div>
 
-          {/* Subtotal */}
-          <p className="text-lg font-semibold mb-6">
-            Subtotal: LKR {(product?.price * quantity).toLocaleString()}
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col gap-3 mt-auto">
+          {/* Buttons */}
+          <div className="px-6 py-4 border-t flex gap-4">
             <Link
               to="/shopping-cart"
-              className="py-2 text-center bg-red-500 text-white rounded hover:bg-red-600 font-semibold"
+              className="w-1/2 py-2 border border-gray-400 text-gray-800 text-center font-bold rounded"
             >
-              View Cart
+              VIEW CART
             </Link>
             <Link
               to="/checkout"
-              className="py-2 text-center bg-gray-200 text-black rounded hover:bg-gray-300 font-semibold"
+              className="w-1/2 py-2 bg-red-600 text-white text-center font-bold rounded hover:bg-red-700"
             >
-              Checkout
+              CHECKOUT
             </Link>
           </div>
         </div>
