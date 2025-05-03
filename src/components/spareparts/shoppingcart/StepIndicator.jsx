@@ -1,37 +1,42 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const StepIndicator = ({ currentStep }) => {
+const StepIndicator = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const steps = [
     { label: "SHOPPING CART", number: "01", path: "/view-cart" },
     { label: "CHECKOUT", number: "02", path: "/checkout" },
-    { label: "ORDER COMPLETE", number: "03", path: "/order-complete" }, // If implemented
+    { label: "ORDER COMPLETE", number: "03", path: "/order-complete" },
   ];
 
   return (
     <div className="flex gap-4 justify-center my-6">
-      {steps.map((step, index) => (
-        <div
-          key={index}
-          onClick={() => navigate(step.path)}
-          className={`w-48 text-center p-4 rounded shadow-sm border cursor-pointer transition-all duration-300 ${
-            currentStep === index + 1
-              ? "bg-red-600 text-white"
-              : "bg-white text-black hover:bg-gray-100"
-          }`}
-        >
-          <span className="block font-semibold text-sm">{step.label}</span>
-          <span
-            className={`text-3xl font-bold ${
-              currentStep === index + 1 ? "text-white/30" : "text-black/10"
+      {steps.map((step) => {
+        const isActive = location.pathname === step.path;
+
+        return (
+          <div
+            key={step.path}
+            onClick={() => navigate(step.path)}
+            className={`w-48 text-center p-4 rounded shadow-sm border cursor-pointer transition-all duration-300 ${
+              isActive
+                ? "bg-red-600 text-white"
+                : "bg-white text-black hover:bg-gray-100"
             }`}
           >
-            {step.number}
-          </span>
-        </div>
-      ))}
+            <span className="block font-semibold text-sm">{step.label}</span>
+            <span
+              className={`text-3xl font-bold ${
+                isActive ? "text-white/30" : "text-black/10"
+              }`}
+            >
+              {step.number}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };
