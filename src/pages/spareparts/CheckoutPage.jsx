@@ -1,6 +1,7 @@
 import React from 'react';
 import CheckoutForm from '../../components/spareparts/shoppingcart/CheckoutForm';
-import StepIndicator from '../../components/spareparts/shoppingcart/StepIndicator'; // Make sure this path is correct
+import StepIndicator from '../../components/spareparts/shoppingcart/StepIndicator';
+import PaymentSection from '../../components/spareparts/shoppingcart/PaymentSection'; // ✅ Import PaymentSection
 
 function CheckoutPage() {
   return (
@@ -8,10 +9,16 @@ function CheckoutPage() {
       {/* Step Indicator */}
       <StepIndicator currentStep={2} />
 
-      {/* Checkout Content */}
+      {/* Checkout Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left - Billing Form */}
         <div className="lg:col-span-2">
           <CheckoutForm />
+        </div>
+
+        {/* Right - Payment Section */}
+        <div className="w-full">
+          <PaymentSection />
         </div>
       </div>
     </div>
