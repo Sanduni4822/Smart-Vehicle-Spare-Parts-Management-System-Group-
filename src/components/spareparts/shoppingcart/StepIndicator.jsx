@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const StepIndicator = ({ currentStep }) => {
+  const navigate = useNavigate();
+
   const steps = [
-    { label: "SHOPPING CART", number: "01" },
-    { label: "CHECKOUT", number: "02" },
-    { label: "ORDER COMPLETE", number: "03" },
+    { label: "SHOPPING CART", number: "01", path: "/view-cart" },
+    { label: "CHECKOUT", number: "02", path: "/checkout" },
+    { label: "ORDER COMPLETE", number: "03", path: "/order-complete" }, // If implemented
   ];
 
   return (
@@ -12,10 +15,11 @@ const StepIndicator = ({ currentStep }) => {
       {steps.map((step, index) => (
         <div
           key={index}
-          className={`w-48 text-center p-4 rounded shadow-sm border transition-all duration-300 ${
+          onClick={() => navigate(step.path)}
+          className={`w-48 text-center p-4 rounded shadow-sm border cursor-pointer transition-all duration-300 ${
             currentStep === index + 1
               ? "bg-red-600 text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-gray-100"
           }`}
         >
           <span className="block font-semibold text-sm">{step.label}</span>
