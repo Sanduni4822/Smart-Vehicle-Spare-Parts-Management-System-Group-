@@ -20,13 +20,13 @@ const StepIndicator = () => {
           <div
             key={step.path}
             onClick={() => navigate(step.path)}
-            className={`w-48 text-center p-4 rounded shadow-sm border cursor-pointer transition-all duration-300 ${
+            className={`w-60 flex justify-between items-center px-6 py-4 rounded cursor-pointer border shadow-sm transition-all duration-300 ${
               isActive
                 ? "bg-red-600 text-white"
                 : "bg-white text-black hover:bg-gray-100"
             }`}
           >
-            <span className="block font-semibold text-sm">{step.label}</span>
+            <span className="text-sm font-semibold">{step.label}</span>
             <span
               className={`text-3xl font-bold ${
                 isActive ? "text-white/30" : "text-black/10"
