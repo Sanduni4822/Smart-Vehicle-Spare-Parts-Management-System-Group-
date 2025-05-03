@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CheckoutForm = () => {
+  const [createAccount, setCreateAccount] = useState(false);
+
   return (
     <div className="bg-blue-50 p-8 rounded shadow">
       {/* Account Details */}
@@ -26,12 +28,36 @@ const CheckoutForm = () => {
           />
         </div>
       </div>
+
       <div className="mt-3">
         <label className="inline-flex items-center">
-          <input type="checkbox" className="mr-2" />
+          <input
+            type="checkbox"
+            className="mr-2"
+            checked={createAccount}
+            onChange={() => setCreateAccount(!createAccount)}
+          />
           <span className="text-sm">Create an account?</span>
         </label>
       </div>
+
+      {/* Show if checkbox is selected */}
+      {createAccount && (
+        <div className="mt-4">
+          <p className="text-sm text-gray-700 mb-2">
+            Create an account by entering the information below. If you are a returning customer
+            please login from the top of the page.
+          </p>
+          <label className="block font-medium mb-1">
+            Password <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            className="w-full border rounded px-3 py-2"
+            placeholder="Enter your password"
+          />
+        </div>
+      )}
 
       {/* Billing Details */}
       <h2 className="text-lg font-semibold mt-8 mb-2">Billing Details</h2>
