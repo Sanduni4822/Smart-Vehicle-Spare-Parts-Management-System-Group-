@@ -12,7 +12,7 @@ const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState('dashboard');
 
   return (
-    <div className="flex p-6 bg-gray-50 min-h-screen gap-6">
+    <div className="flex p-6 bg-gray-50 min-h-[500px] gap-6">
       <AccountSidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <div className="flex-1">
         {selectedTab === 'dashboard' && (

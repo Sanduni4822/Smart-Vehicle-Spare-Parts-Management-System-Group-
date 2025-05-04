@@ -17,21 +17,11 @@ const EditProfileForm = ({ user }) => {
       <h2 className="text-lg font-medium bg-gray-100 p-3 rounded-t">My Profile</h2>
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">First Name *</label>
+          <label className="block text-sm font-medium mb-1">Name *</label>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full border px-4 py-2 rounded"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-1">Last Name *</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
             className="w-full border px-4 py-2 rounded"
             required
           />

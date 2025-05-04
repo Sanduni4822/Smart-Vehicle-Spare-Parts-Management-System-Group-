@@ -2,10 +2,7 @@ import React from 'react';
 import { FaEnvelope, FaUser } from 'react-icons/fa';
 
 const AccountDashboard = ({ user, onEditClick }) => {
-  const fullName =
-    user?.firstName && user?.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : user?.name || 'Name not available';
+  const fullName = user?.name || 'Name not available';
 
   return (
     <div className="bg-white border rounded-md w-full max-w-3xl mt-20">
