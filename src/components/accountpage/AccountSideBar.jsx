@@ -1,5 +1,12 @@
 import React from "react";
-import { FaTachometerAlt, FaShoppingCart, FaHeart, FaCommentDots, FaUser, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaTachometerAlt,
+  FaShoppingCart,
+  FaHeart,
+  FaCommentDots,
+  FaUser,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const AccountSidebar = () => {
@@ -12,9 +19,14 @@ const AccountSidebar = () => {
 
   return (
     <div className="w-full max-w-xs p-4 space-y-4">
-      <h3 className="text-sm text-gray-500 mb-4">Home &gt; <span className="text-gray-800 font-medium">My Account</span></h3>
-      
-      <ul className="space-y-4">
+      {/* Breadcrumb */}
+      <h3 className="text-sm text-gray-500 mb-10">
+        Home &gt;{" "}
+        <span className="text-gray-800 font-medium">My Account</span>
+      </h3>
+
+      {/* Sidebar Menu */}
+      <ul className="space-y-8 pt-4">
         <li className="flex items-center gap-3 text-red-600 font-medium">
           <FaTachometerAlt />
           Dashboard
