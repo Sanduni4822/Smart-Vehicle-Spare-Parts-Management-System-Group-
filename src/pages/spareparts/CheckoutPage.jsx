@@ -1,26 +1,52 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import CheckoutForm from '../../components/spareparts/shoppingcart/CheckoutForm';
-import StepIndicator from '../../components/spareparts/shoppingcart/StepIndicator';
 import PaymentSection from '../../components/spareparts/shoppingcart/PaymentSection';
-import PaymentOrderSummary from '../../components/spareparts/shoppingcart/PaymentOrderSummary'; 
+import PaymentOrderSummary from '../../components/spareparts/shoppingcart/PaymentOrderSummary';
+import { useNavigate } from 'react-router-dom';
 
 function CheckoutPage() {
+  const formRef = useRef();
+  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [agreed, setAgreed] = useState(false);
+  const navigate = useNavigate();
+
+  const handlePlaceOrder = () => {
+    if (!agreed) {
+      alert("You must agree to the Terms & Conditions.");
+      return;
+    }
+
+    if (formRef.current?.validateForm()) {
+      if (paymentMethod === "card") {
+        navigate("/order-completecredit");
+      } else if (paymentMethod === "paypal") {
+        navigate("/order-completepaypal");
+      } else if (paymentMethod === "cod") {
+        navigate("/order-completecash");
+      } else {
+        alert("Please select a valid payment method.");
+      }
+    } else {
+      alert("Please fill in all required fields.");
+    }
+  };
+
   return (
     <div className="container mx-auto my-8">
-      {/* Step Indicator */}
-      <StepIndicator currentStep={2} />
-
-      {/* Checkout Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Left - Billing Form */}
         <div className="lg:col-span-2">
-          <CheckoutForm />
+          <CheckoutForm ref={formRef} />
         </div>
-
-        {/* Right - Payment + Order Summary */}
         <div className="flex flex-col gap-4">
-          <PaymentSection />
-          <PaymentOrderSummary />
+          <PaymentSection
+            selectedMethod={paymentMethod}
+            setSelectedMethod={setPaymentMethod}
+          />
+          <PaymentOrderSummary
+            agreed={agreed}
+            setAgreed={setAgreed}
+            onPlaceOrder={handlePlaceOrder}
+          />
         </div>
       </div>
     </div>

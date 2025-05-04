@@ -30,6 +30,9 @@ import FuelAirViewDetailsPage from './pages/spareparts/FuelAirViewDetailsPage';
 import HeadlightViewDetailsPage from './pages/spareparts/HeadlightsViewDetailsPage';
 import ViewCartPage from './pages/spareparts/ViewCartPage';
 import CheckoutPage from './pages/spareparts/CheckoutPage';
+import PaypalPaymentFormPage from './pages/spareparts/PaypalPaymentFormPage';
+import CashOnDeliveryPage from './pages/spareparts/CashOnDeliveryPage';
+import CreditCardPaymentFormPage from './pages/spareparts/CreditCardPaymentFormPage';
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -69,6 +72,9 @@ function App() {
             <Route path="/headlight" element={<HeadlightViewDetailsPage />} />
             <Route path="/view-cart" element={<ViewCartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/order-completecredit" element={<CreditCardPaymentFormPage />} />
+            <Route path="/order-completepaypal" element={<PaypalPaymentFormPage/>} />
+            <Route path="/order-completecash" element={<CashOnDeliveryPage/>} />
           </Routes>
         </main>
 
