@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser,
-  FaFacebookF, FaTwitter, FaLinkedinIn,
+  FaFacebookF, FaInstagram, FaLinkedinIn,
   FaBars, FaTimes
 } from 'react-icons/fa';
 import Garage from '../../assets/Garage.png';
@@ -51,9 +51,27 @@ const NavBar = ({ handleSidebarToggle }) => {
         </div>
 
         <div className="flex items-center gap-4 text-gray-700">
-          <a href="#"><FaFacebookF /></a>
-          <a href="#"><FaTwitter /></a>
-          <a href="#"><FaLinkedinIn /></a>
+          <a
+            href="https://www.facebook.com/sanduni.wathsala.14203544?mibextid=ZbWKwL"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sanduni-wathsala-90894a254"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="https://www.instagram.com/sanduni_wathsala_sw/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram />
+          </a>
           <div className="flex items-center gap-1 cursor-pointer">
             <FaUser />
             {isLoggedIn ? (
