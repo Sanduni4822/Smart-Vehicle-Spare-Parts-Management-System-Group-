@@ -3,9 +3,11 @@ import {
   FaTachometerAlt, FaShoppingCart, FaHeart, FaCommentDots, FaUser, FaSignOutAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import AccountBreadcrumb from "../../components/accountpage/AccountBreadcrumb"; 
 
 const AccountSidebar = ({ selectedTab, setSelectedTab }) => {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -25,9 +27,7 @@ const AccountSidebar = ({ selectedTab, setSelectedTab }) => {
 
   return (
     <div className="w-full max-w-xs p-4 space-y-4">
-      <h3 className="text-sm text-gray-500 mb-10">
-        Home &gt; <span className="text-gray-800 font-medium">My Account</span>
-      </h3>
+      <AccountBreadcrumb selectedTab={selectedTab} /> {/* 👈 Dynamic Breadcrumb */}
       <ul className="space-y-8 pt-4">
         {tabItem(<FaTachometerAlt />, 'Dashboard', 'dashboard')}
         {tabItem(<FaShoppingCart />, 'My Orders', 'orders')}

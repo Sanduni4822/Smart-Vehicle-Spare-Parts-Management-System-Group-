@@ -13,7 +13,7 @@ const EditProfileForm = ({ user }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-6">
+    <form onSubmit={handleSubmit} className="bg-white mt-20 p-6 rounded shadow space-y-6">
       <h2 className="text-lg font-medium bg-gray-100 p-3 rounded-t">My Profile</h2>
       <div className="space-y-4">
         <div>
