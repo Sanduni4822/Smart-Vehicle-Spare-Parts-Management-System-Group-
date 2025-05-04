@@ -7,7 +7,7 @@ import ShoppingCartDrawer from './components/spareparts/shoppingcart/ShoppingCar
 import { currentProducts } from './components/spareparts/ProductGridBakers'; // update path as needed
 
 import HomePage from './pages/homepage/HomePage';
-import LoginPage from './pages/Login/LoginPage';
+import LoginPage from './pages/login/LoginPage';
 import ResetPasswordPage from './pages/login/ResetPasswordPage';
 import SignUpPage from './pages/Signup/SignupPage';
 import EmergencyAssistance from './pages/emergency/EmergencyAssistance';
@@ -33,6 +33,7 @@ import CheckoutPage from './pages/spareparts/CheckoutPage';
 import PaypalPaymentFormPage from './pages/spareparts/PaypalPaymentFormPage';
 import CashOnDeliveryPage from './pages/spareparts/CashOnDeliveryPage';
 import CreditCardPaymentFormPage from './pages/spareparts/CreditCardPaymentFormPage';
+import AccountPage from './pages/account/AccountPage';
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -75,6 +76,7 @@ function App() {
             <Route path="/order-completecredit" element={<CreditCardPaymentFormPage />} />
             <Route path="/order-completepaypal" element={<PaypalPaymentFormPage/>} />
             <Route path="/order-completecash" element={<CashOnDeliveryPage/>} />
+            <Route path="/account" element={<AccountPage/>} />
           </Routes>
         </main>
 

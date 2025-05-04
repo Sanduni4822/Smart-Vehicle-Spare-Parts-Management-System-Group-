@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaShoppingCart,
-  FaUser,
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaPinterestP,
-  FaBars,
-  FaTimes,
+  FaPhoneAlt, FaEnvelope, FaShoppingCart, FaUser,
+  FaFacebookF, FaTwitter, FaLinkedinIn,
+  FaBars, FaTimes
 } from 'react-icons/fa';
 import Garage from '../../assets/Garage.png';
 
 const NavBar = ({ handleSidebarToggle }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentlocation = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+  }, [location]);
+
   const handleContactClick = () => {
-    if (currentlocation.pathname !== '/') {
+    if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
         window.scrollToContact?.();
@@ -28,6 +27,11 @@ const NavBar = ({ handleSidebarToggle }) => {
     } else {
       window.scrollToContact?.();
     }
+    setMenuOpen(false);
+  };
+
+  const handleAccountClick = () => {
+    navigate('/account');
     setMenuOpen(false);
   };
 
@@ -45,14 +49,18 @@ const NavBar = ({ handleSidebarToggle }) => {
             <span>0479892752</span>
           </div>
         </div>
+
         <div className="flex items-center gap-4 text-gray-700">
           <a href="#"><FaFacebookF /></a>
           <a href="#"><FaTwitter /></a>
           <a href="#"><FaLinkedinIn /></a>
-          <a href="#"><FaPinterestP /></a>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 cursor-pointer">
             <FaUser />
-            <Link to="/login">Login</Link>
+            {isLoggedIn ? (
+              <span onClick={handleAccountClick}>Account</span>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </div>
         </div>
       </div>
@@ -75,10 +83,7 @@ const NavBar = ({ handleSidebarToggle }) => {
 
         {/* Icons */}
         <div className="flex items-center gap-3 text-gray-700 text-sm">
-          <button
-            className="flex items-center gap-1"
-            onClick={handleSidebarToggle} // 🔁 Trigger the Drawer from MainLayout
-          >
+          <button className="flex items-center gap-1" onClick={handleSidebarToggle}>
             <FaShoppingCart />
             <span className="hidden sm:inline">₹ 0.00</span>
           </button>
@@ -97,9 +102,11 @@ const NavBar = ({ handleSidebarToggle }) => {
           <Link to="/garage" onClick={() => setMenuOpen(false)}>Find Garages</Link>
           <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
           <button onClick={handleContactClick}>Contact</button>
-          <Link to="/login" onClick={() => setMenuOpen(false)}>
-            <FaUser className="inline mr-1" /> Login
-          </Link>
+          {isLoggedIn ? (
+            <button onClick={handleAccountClick}>Account</button>
+          ) : (
+            <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+          )}
         </nav>
       )}
     </header>

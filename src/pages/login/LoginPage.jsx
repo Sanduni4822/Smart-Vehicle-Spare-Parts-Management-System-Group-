@@ -31,20 +31,20 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Logging in with", { email, password });
-      // TODO: Send email/password to backend, get response
+      // ✅ Save user info to localStorage
+      localStorage.setItem("user", JSON.stringify({ email }));
 
-      // Simulate successful login:
-      navigate("/"); // 👈 Redirect to Home after successful login
+      // Redirect to home
+      navigate("/");
     }
   };
 
   const handleGoogleLoginSuccess = (credentialResponse) => {
     console.log("Google login success:", credentialResponse);
-    // TODO: Send credential to backend
-
-    // Simulate successful Google login:
-    navigate("/"); // 👈 Redirect to Home after Google login success
+    
+    // For simulation:
+    localStorage.setItem("user", JSON.stringify({ email: "googleuser@gmail.com" }));
+    navigate("/");
   };
 
   const handleGoogleLoginError = () => {
@@ -119,7 +119,7 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center text-sm text-gray-700">
-            Forget Password?{" "}
+            Forgot Password?{" "}
             <button
               type="button"
               onClick={() => navigate("/resetp")}
