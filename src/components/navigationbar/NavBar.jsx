@@ -55,6 +55,7 @@ const NavBar = ({ handleSidebarToggle }) => {
             href="https://www.facebook.com/sanduni.wathsala.14203544?mibextid=ZbWKwL"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-600"
           >
             <FaFacebookF />
           </a>
@@ -62,6 +63,7 @@ const NavBar = ({ handleSidebarToggle }) => {
             href="https://www.linkedin.com/in/sanduni-wathsala-90894a254"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-600"
           >
             <FaLinkedinIn />
           </a>
@@ -69,15 +71,16 @@ const NavBar = ({ handleSidebarToggle }) => {
             href="https://www.instagram.com/sanduni_wathsala_sw/"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-600"
           >
             <FaInstagram />
           </a>
-          <div className="flex items-center gap-1 cursor-pointer">
+          <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
             <FaUser />
             {isLoggedIn ? (
               <span onClick={handleAccountClick}>Account</span>
             ) : (
-              <Link to="/login">Login</Link>
+              <Link to="/login" className="hover:text-blue-600">Login</Link>
             )}
           </div>
         </div>
@@ -89,7 +92,6 @@ const NavBar = ({ handleSidebarToggle }) => {
           <img src={Garage} alt="Logo" className="h-12 md:h-16 w-auto object-contain" />
         </div>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-sm">
           <Link to="/" className="hover:text-blue-600">Home</Link>
           <Link to="/emer" className="hover:text-blue-600">Emergency</Link>
@@ -99,7 +101,6 @@ const NavBar = ({ handleSidebarToggle }) => {
           <button onClick={handleContactClick} className="hover:text-blue-600">Contact</button>
         </nav>
 
-        {/* Icons */}
         <div className="flex items-center gap-3 text-gray-700 text-sm">
           <button className="flex items-center gap-1" onClick={handleSidebarToggle}>
             <FaShoppingCart />
