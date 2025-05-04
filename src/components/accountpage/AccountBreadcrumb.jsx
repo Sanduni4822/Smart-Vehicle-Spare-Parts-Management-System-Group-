@@ -1,5 +1,5 @@
-// src/components/accountpage/AccountBreadcrumb.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const tabLabels = {
   dashboard: 'My Account',
@@ -14,11 +14,18 @@ const AccountBreadcrumb = ({ selectedTab }) => {
 
   return (
     <h3 className="text-sm text-gray-500 mb-10">
-      Home &gt; <span className="text-gray-800 font-medium">My Account</span>
+      <Link
+        to="/"
+        className="no-underline text-gray-500 hover:text-red-600 transition-colors"
+      >
+        Home
+      </Link>
+      &nbsp;&gt;&nbsp;
+      <span className="text-gray-800 font-medium">My Account</span>
       {selectedTab !== 'dashboard' && (
         <>
-          {' '}
-          &gt; <span className="text-gray-800 font-medium">{label}</span>
+          &nbsp;&gt;&nbsp;
+          <span className="text-gray-800 font-medium">{label}</span>
         </>
       )}
     </h3>
