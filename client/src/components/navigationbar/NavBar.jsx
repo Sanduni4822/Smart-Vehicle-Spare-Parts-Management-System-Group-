@@ -104,7 +104,7 @@ const NavBar = ({ handleSidebarToggle }) => {
         <div className="flex items-center gap-3 text-gray-700 text-sm">
           <button className="flex items-center gap-1" onClick={handleSidebarToggle}>
             <FaShoppingCart />
-            <span className="hidden sm:inline">₹ 0.00</span>
+            <span className="hidden sm:inline">Rs 0.00</span>
           </button>
           <button className="md:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
