@@ -4,7 +4,7 @@ const authController = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Public
-router.post("/register", authController.register);
+router.post("/signup", authController.register);
 router.post("/login", authController.login);
 router.post("/google-login", authController.googleLogin);
 
