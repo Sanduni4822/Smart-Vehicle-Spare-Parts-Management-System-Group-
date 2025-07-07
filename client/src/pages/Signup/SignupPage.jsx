@@ -21,7 +21,7 @@ export default function SignUpPage() {
 
     try {
       await API.post("/auth/signup", { name, email, password });
-      navigate("/login");
+      navigate("/login");  // Redirect to login page after successful signup
     } catch (err) {
       if (err.response && err.response.data.message) {
         setError(err.response.data.message);
