@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../../services/api";
 
 export default function SignUpPage() {
   const [name, setName] = useState("");
@@ -8,41 +9,26 @@ export default function SignUpPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    /* global google */
-    window.google.accounts.id.initialize({
-      client_id: "426813651843-dfvjii2tqf8823mqam9tjhdnqcg6jb4c.apps.googleusercontent.com",
-      callback: handleCredentialResponse,
-    });
-
-    window.google.accounts.id.renderButton(
-      document.getElementById("google-signin-button"),
-      { theme: "outline", size: "large", width: "300" }
-    );
-  }, []);
-
-  const handleCredentialResponse = (response) => {
-    console.log("Encoded JWT ID token: " + response.credential);
-    navigate("/login");
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Password validation
     if (password.length < 6) {
       setError("Password must be at least 6 characters long.");
       return;
     }
 
-    // Clear any previous error
     setError("");
 
-    // Simulate sending data to backend
-    console.log({ name, email, password });
-
-    // Navigate to login page after successful signup
-    navigate("/login");
+    try {
+      await API.post("/auth/signup", { name, email, password });
+      navigate("/login");
+    } catch (err) {
+      if (err.response && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Signup failed. Please try again.");
+      }
+    }
   };
 
   return (
@@ -50,9 +36,9 @@ export default function SignUpPage() {
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md">
         <h2 className="text-3xl font-bold text-center mb-8">Sign Up</h2>
 
-        {/* Sign Up Form */}
+        {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Name
@@ -67,7 +53,6 @@ export default function SignUpPage() {
             />
           </div>
 
-          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -82,7 +67,6 @@ export default function SignUpPage() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
@@ -97,12 +81,6 @@ export default function SignUpPage() {
             />
           </div>
 
-          {/* Error Message */}
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
-
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-gray-800 text-white py-2 rounded-md text-sm font-semibold hover:bg-gray-700 transition"
@@ -110,23 +88,16 @@ export default function SignUpPage() {
             SIGN UP
           </button>
 
-          {/* Already have account */}
-          <div className="text-center text-sm text-gray-700 mt-2">
+          <div className="text-center text-sm text-gray-700 mt-4">
             Already have an account?{" "}
-            <a href="/login" className="text-orange-600 hover:underline">
+            <button
+              type="button"
+              onClick={() => navigate("/login")}
+              className="text-orange-600 hover:underline"
+            >
               Please login
-            </a>
+            </button>
           </div>
-
-          {/* Divider */}
-          <div className="flex items-center justify-center my-4">
-            <div className="border-t w-1/4"></div>
-            <span className="mx-2 text-gray-400 text-sm">OR</span>
-            <div className="border-t w-1/4"></div>
-          </div>
-
-          {/* Google Sign In Button */}
-          <div id="google-signin-button" className="flex justify-center"></div>
         </form>
       </div>
     </div>

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import API from "../../services/api";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const validate = () => {
     const newErrors = {};
@@ -28,31 +31,51 @@ export default function LoginPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      // ✅ Save user info to localStorage
-      localStorage.setItem("user", JSON.stringify({ email }));
 
-      // Redirect to home
-      navigate("/");
+    if (validate()) {
+      try {
+        const response = await API.post("/auth/login", { email, password });
+        const { token, user } = response.data;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        login(user);
+
+        navigate("/");
+      } catch (err) {
+        setErrors({
+          server:
+            err.response?.data?.message || "Login failed. Please try again.",
+        });
+      }
     }
   };
 
-  const handleGoogleLoginSuccess = (credentialResponse) => {
-    console.log("Google login success:", credentialResponse);
-    
-    // For simulation:
-    localStorage.setItem("user", JSON.stringify({ email: "googleuser@gmail.com" }));
-    navigate("/");
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    try {
+      const response = await API.post("/auth/google-login", {
+        token: credentialResponse.credential,
+      });
+
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      login(user);
+
+      navigate("/");
+    } catch (error) {
+      setErrors({ server: "Google login failed. Please try again." });
+    }
   };
 
   const handleGoogleLoginError = () => {
-    console.log("Google login failed");
+    setErrors({ server: "Google login failed. Please try again." });
   };
 
   return (
-    <GoogleOAuthProvider clientId="426813651843-dfvjii2tqf8823mqam9tjhdnqcg6jb4c.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-100">
         <form
           onSubmit={handleLogin}
@@ -60,7 +83,10 @@ export default function LoginPage() {
         >
           <h2 className="text-2xl font-bold text-center">Login</h2>
 
-          {/* Email Field */}
+          {errors.server && (
+            <p className="text-center text-red-600">{errors.server}</p>
+          )}
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -79,7 +105,6 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* Password Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
@@ -98,7 +123,6 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
             className="w-full bg-gray-800 text-white py-2 rounded-md font-semibold shadow hover:bg-gray-700 transition"
@@ -106,7 +130,6 @@ export default function LoginPage() {
             LOGIN
           </button>
 
-          {/* Links */}
           <div className="text-center text-sm text-gray-700">
             New to Car Parts?{" "}
             <button
@@ -118,26 +141,13 @@ export default function LoginPage() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-700">
-            Forgot Password?{" "}
-            <button
-              type="button"
-              onClick={() => navigate("/resetp")}
-              className="text-orange-600 hover:underline"
-            >
-              Reset Password
-            </button>
-          </div>
-
-          {/* Divider */}
           <div className="flex items-center justify-center my-4">
             <hr className="flex-grow border-t border-gray-300" />
             <span className="mx-3 text-gray-400 text-sm">OR</span>
             <hr className="flex-grow border-t border-gray-300" />
           </div>
 
-          {/* Google Login */}
-          <div className="flex items-center justify-center my-4">
+          <div className="flex items-center justify-center">
             <GoogleLogin
               onSuccess={handleGoogleLoginSuccess}
               onError={handleGoogleLoginError}
