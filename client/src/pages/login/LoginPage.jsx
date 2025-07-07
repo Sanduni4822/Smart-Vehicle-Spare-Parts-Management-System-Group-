@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../services/api";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function LoginPage() {
@@ -36,18 +37,17 @@ export default function LoginPage() {
     if (validate()) {
       try {
         const response = await API.post("/auth/login", { email, password });
-        const { token, user, role } = response.data;
+        const { token, user } = response.data;
 
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("role", role); // Save the role to localStorage
         login(user);
 
-        // Redirect based on role
-        if (role === "admin") {
-          navigate("/admin-dashboard");
+        // Redirect based on user role
+        if (user.role === "admin") {
+          navigate("/admin-dashboard"); // Admin dashboard
         } else {
-          navigate("/");
+          navigate("/"); // Customer homepage
         }
       } catch (err) {
         setErrors({
@@ -58,72 +58,117 @@ export default function LoginPage() {
     }
   };
 
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    try {
+      const response = await API.post("/auth/google-login", {
+        token: credentialResponse.credential,
+      });
+
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      login(user);
+
+      // Redirect based on user role
+      if (user.role === "admin") {
+        navigate("/admin-dashboard"); // Admin dashboard
+      } else {
+        navigate("/home"); // Customer homepage
+      }
+    } catch (error) {
+      setErrors({ server: "Google login failed. Please try again." });
+    }
+  };
+
+  const handleGoogleLoginError = () => {
+    setErrors({ server: "Google login failed. Please try again." });
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-100">
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-sm p-6 bg-white rounded-xl shadow-md space-y-6"
-      >
-        <h2 className="text-2xl font-bold text-center">Login</h2>
-
-        {errors.server && (
-          <p className="text-center text-red-600">{errors.server}</p>
-        )}
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-4 py-2 border ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            } rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
-          />
-          {errors.email && (
-            <p className="text-sm text-red-500 mt-1">{errors.email}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={`w-full px-4 py-2 border ${
-              errors.password ? "border-red-500" : "border-gray-300"
-            } rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
-          />
-          {errors.password && (
-            <p className="text-sm text-red-500 mt-1">{errors.password}</p>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-gray-800 text-white py-2 rounded-md font-semibold shadow hover:bg-gray-700 transition"
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-100">
+        <form
+          onSubmit={handleLogin}
+          className="w-full max-w-sm p-6 bg-white rounded-xl shadow-md space-y-6"
         >
-          LOGIN
-        </button>
+          <h2 className="text-2xl font-bold text-center">Login</h2>
 
-        <div className="text-center text-sm text-gray-700">
-          New to Car Parts?{" "}
+          {errors.server && (
+            <p className="text-center text-red-600">{errors.server}</p>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`w-full px-4 py-2 border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+            />
+            {errors.email && (
+              <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`w-full px-4 py-2 border ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+            />
+            {errors.password && (
+              <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+            )}
+          </div>
+
           <button
-            type="button"
-            onClick={() => navigate("/signup")}
-            className="text-orange-600 hover:underline"
+            type="submit"
+            className="w-full bg-gray-800 text-white py-2 rounded-md font-semibold shadow hover:bg-gray-700 transition"
           >
-            Create New Account
+            LOGIN
           </button>
-        </div>
-      </form>
-    </div>
+
+          <div className="text-center text-sm text-gray-700">
+            New to Car Parts?{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/signup")}
+              className="text-orange-600 hover:underline"
+            >
+              Create New Account
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center my-4">
+            <hr className="flex-grow border-t border-gray-300" />
+            <span className="mx-3 text-gray-400 text-sm">OR</span>
+            <hr className="flex-grow border-t border-gray-300" />
+          </div>
+
+          <div className="flex items-center justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={handleGoogleLoginError}
+              text="continue_with"
+              theme="outline"
+              shape="pill"
+              className="google-login-button"
+            />
+          </div>
+        </form>
+      </div>
+    </GoogleOAuthProvider>
   );
 }
