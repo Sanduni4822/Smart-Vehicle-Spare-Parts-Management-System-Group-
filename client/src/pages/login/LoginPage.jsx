@@ -75,7 +75,7 @@ export default function LoginPage() {
   };
 
   return (
-    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-100">
         <form
           onSubmit={handleLogin}
