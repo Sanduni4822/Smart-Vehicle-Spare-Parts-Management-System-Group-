@@ -151,10 +151,10 @@ export default function LoginPage() {
             <GoogleLogin
               onSuccess={handleGoogleLoginSuccess}
               onError={handleGoogleLoginError}
-              width="100%"
               text="continue_with"
               theme="outline"
               shape="pill"
+              className="google-login-button"
             />
           </div>
         </form>
@@ -162,3 +162,4 @@ export default function LoginPage() {
     </GoogleOAuthProvider>
   );
 }
+
