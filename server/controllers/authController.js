@@ -1,10 +1,13 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Register
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body; // Removed role from frontend
+  const { name, email, password } = req.body; // role usually handled internally
 
   try {
     const existingUser = await User.findOne({ email });
@@ -17,13 +20,13 @@ exports.register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      // No need to send role from frontend; "customer" will be used by default
+      role: "customer", // default role
     });
 
     const { password: pw, ...userData } = user._doc;
     res.status(201).json(userData);
   } catch (err) {
-    console.error("Registration error:", err); // Log error to terminal
+    console.error("Registration error:", err);
     res.status(500).json({ message: "Registration failed" });
   }
 };
@@ -54,9 +57,18 @@ exports.login = async (req, res) => {
 
 // Google Login
 exports.googleLogin = async (req, res) => {
-  const { email, name, googleId } = req.body;
+  const { token } = req.body;
 
   try {
+    // Verify Google token
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+
+    const { email, name, sub: googleId } = payload;
+
     let user = await User.findOne({ email });
 
     if (!user) {
@@ -64,25 +76,25 @@ exports.googleLogin = async (req, res) => {
         email,
         name,
         googleId,
-        role: "customer", // Default role for Google users
+        role: "customer", // default role
       });
     }
 
-    const token = jwt.sign(
+    const jwtToken = jwt.sign(
       { userId: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    const { password: pw, ...userData } = user._doc;
-    res.json({ token, user: userData });
+    const { password, ...userData } = user._doc;
+    res.json({ token: jwtToken, user: userData });
   } catch (err) {
     console.error("Google login error:", err);
-    res.status(500).json({ message: "Google login error" });
+    res.status(500).json({ message: "Google login failed" });
   }
 };
 
-// Secure route example
+// Secure profile route example
 exports.getProfile = async (req, res) => {
   res.json({ message: "Secure access granted", user: req.user });
 };
