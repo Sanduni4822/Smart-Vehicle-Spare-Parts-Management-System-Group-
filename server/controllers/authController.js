@@ -1,13 +1,10 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { OAuth2Client } = require("google-auth-library");
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-// Register
+// Register function
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body; // role usually handled internally
+  const { name, email, password } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -20,7 +17,7 @@ exports.register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: "customer", // default role
+      role: "customer", // Default role
     });
 
     const { password: pw, ...userData } = user._doc;
@@ -31,7 +28,7 @@ exports.register = async (req, res) => {
   }
 };
 
-// Login
+// Login function
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -55,12 +52,11 @@ exports.login = async (req, res) => {
   }
 };
 
-// Google Login
+// Google Login function
 exports.googleLogin = async (req, res) => {
   const { token } = req.body;
 
   try {
-    // Verify Google token
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience: process.env.GOOGLE_CLIENT_ID,
@@ -76,7 +72,7 @@ exports.googleLogin = async (req, res) => {
         email,
         name,
         googleId,
-        role: "customer", // default role
+        role: "customer", // Default role
       });
     }
 
@@ -94,7 +90,34 @@ exports.googleLogin = async (req, res) => {
   }
 };
 
-// Secure profile route example
+// Update Profile function
+exports.updateProfile = async (req, res) => {
+  const { name, email, password } = req.body;
+  const userId = req.user.userId; // Get userId from JWT token
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
+
+    await user.save();
+    res.json({ message: "Profile updated successfully", user });
+  } catch (err) {
+    console.error("Profile update error:", err);
+    res.status(500).json({ message: "Profile update failed" });
+  }
+};
+
+// Get Profile function
 exports.getProfile = async (req, res) => {
   res.json({ message: "Secure access granted", user: req.user });
 };
